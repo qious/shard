@@ -151,7 +151,6 @@ module.exports = {
     "object-curly-spacing": [2, "never"],
     "object-shorthand": 0,
     "one-var": [2, "never"],
-    "operator-assignment": [2, "never"],
     "operator-linebreak": [2, "after"],
     "padded-blocks": 0,
     "prefer-const": 0,

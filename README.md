@@ -1,3 +1,9 @@
+#### 项目状态
+
+[![build status](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/build.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
+
+[![coverage report](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/coverage.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
+
 #### **开发环境搭建**
 
 ```bash
@@ -47,9 +53,12 @@ npm run start
     └── server
         ├── api               // API定义
         ├── config            // 配置文件
+        ├── cron              // 计划任务
         ├── lib               // 通用函数
         ├── middleware        // 中间件
-        ├── service           // 业务逻辑
+        ├── model             // 数据模型
         ├── resource          // 资源文件
+        ├── service           // 业务逻辑
         ├── spec              // swagger
         └── app.js            // 入口文件
+        └── cron.js           // 计划任务入口文件

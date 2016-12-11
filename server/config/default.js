@@ -4,14 +4,10 @@ const path = require('path');
 
 const pkg = require('../../package');
 
-let host = '127.0.0.1';
-let port = '8001';
-let protocol = 'http';
-
 let config = {
-  protocol: protocol,
-  host: host,
-  port: port,
+  protocol: 'http',
+  host: '127.0.0.1',
+  port: '8001',
 
   env: 'development',
   debug: true,
@@ -20,7 +16,6 @@ let config = {
     info: {
       version: pkg.version,
     },
-    host: `${host}:${port}`,
   },
 
   session: {
@@ -47,7 +42,7 @@ let config = {
   },
 
   mysql: {
-    network: {
+    shard: {
       poolSize: 5,
       host: '127.0.0.1',
       user: 'shard',
@@ -58,16 +53,13 @@ let config = {
 
   wechat: {
     tick: {
-      corpid: 'wx1eedf3f9bb7f47b0',
-      secret: 'fWOjVeC5lfjSezwAv8W6r2OT-s8ZlxGZyXsVaX4AexSG2VTgGhI-Dr66pSPoJnJW',
+      corpid: 'wx4e2c2b771c467c9f',
+      secret: 'k7TGD8xJLDU6-sPH3NwY0eTs2oBPyAINMdbSbGN80fuEt01UK0Z8dWzhm7crgkz7',
       apps: {
-        system: {
+        shard: {
           agentid: 0,
-        },
-        birthday: {
-          agentid: 9,
-          token: 'qbiWQA3OYSmpeXuhiJ',
-          aeskey: 'zoCYCqo61fLUUycvgNPAU3f6nORUUIblvY9NpCQkXoJ',
+          token: 'mRoQySqj2XBEORdnuOh9wei17',
+          aeskey: '6mRfWp9o1dfXHnmRBCFmTlpM3IIY377wy2iDJJjx4lM',
         },
       },
     },
@@ -83,6 +75,12 @@ let config = {
     flow: {
       threshold: 2500000,
       Interface: 'eth0:',
+    },
+  },
+
+  birthday: {
+    wechat: {
+      top_pic: 'https://cdn.qiujun.me/161129/105133.png!wechat',
     },
   },
 

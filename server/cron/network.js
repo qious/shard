@@ -3,10 +3,10 @@
 const config = require('config');
 
 const cron = require('../lib/cron');
-const wechat = require('../lib/wechat')('tick', 'system');
+const wechat = require('../lib/wechat')('tick', 'shard');
 const network = require('../service/network');
 
-module.exports = cron('0 */3 * * * *', function* (threshold) {
+let _flow = function* (threshold) {
   if (threshold === undefined) {
     threshold = config.network.flow.threshold;
   }
@@ -36,7 +36,16 @@ module.exports = cron('0 */3 * * * *', function* (threshold) {
       articles: [{title, description}],
     },
   };
-  yield wechat.sendAsync(to, message);
+
+  if (config.env === 'production' && to && message) {
+    yield wechat.sendAsync(to, message);
+  }
 
   return true;
-});
+};
+let flow = cron('0 */3 * * * *', _flow);
+
+module.exports = {
+  _flow,
+  flow,
+};

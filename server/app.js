@@ -8,7 +8,6 @@ const http = require('http');
 const config = require('config');
 const bodyParser = require('body-parser');
 
-require('./cron'); // 执行计划任务
 const express = require('./lib/express');
 const mws = require('./middleware');
 
@@ -29,6 +28,12 @@ app.use(mws.swagger());
 // 加载参数与返回值校验
 app.use(mws.validation.request());
 app.use(mws.validation.response());
+
+// 加载测试组件
+app.use(mws.switch());
+
+// 加载权限校验
+app.use(mws.auth());
 
 // 加载路由
 app.use(mws.routers());
