@@ -1,7 +1,11 @@
 #### 项目状态
 
-[![build status](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/build.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
+##### Master
+[![build status](https://gitlab.ticknet.cn/qiujun/shard/badges/master/build.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/master)
+[![coverage report](https://gitlab.ticknet.cn/qiujun/shard/badges/master/coverage.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/master)
 
+##### Develop
+[![build status](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/build.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
 [![coverage report](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/coverage.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
 
 #### **开发环境搭建**
