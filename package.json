@@ -1,18 +1,18 @@
 {
   "name": "shard",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
-    "node": ">=4.4.4"
+    "node": ">=6.9.3"
   },
   "engine-strict": true,
   "description": "零碎代码合集",
   "main": "server/app.js",
   "scripts": {
-    "dev": "nodemon -e js,yaml -x 'node --harmony' server/app.js",
-    "cron": "nodemon -e js,yaml -x 'node --harmony' server/cron.js",
-    "lint": "./node_modules/.bin/eslint --ext .jsx,.js --ignore-path .lintignore server",
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --harmony --require co-mocha --colors server/resource/mocha_bootload 'server/**/*.test.js'",
-    "cover": "NODE_ENV=test ./node_modules/.bin/nyc --reporter html --reporter text-summary ./node_modules/.bin/mocha --harmony --require co-mocha --colors server/resource/mocha_bootload 'server/**/*.test.js'",
+    "dev": "nodemon -e js,yaml server/app.js",
+    "cron": "nodemon -e js,yaml server/cron.js",
+    "lint": "eslint --ignore-path .lintignore server",
+    "test": "NODE_ENV=test mocha --require co-mocha --colors server/resource/mocha_bootload 'server/**/*.test.js'",
+    "cover": "NODE_ENV=test nyc --reporter html --reporter text-summary mocha --require co-mocha --colors server/resource/mocha_bootload 'server/**/*.test.js'",
     "start": "pm2 start pm2.json",
     "commit": "git cz"
   },
@@ -36,7 +36,7 @@
     "cron": "^1.1.0",
     "debug": "^2.2.0",
     "express": "^4.13.4",
-    "express-ko": "^1.0.1",
+    "express-ko": "^1.0.2",
     "express-session": "^1.14.0",
     "glob": "^7.0.5",
     "ioredis": "^2.3.0",
@@ -47,7 +47,6 @@
     "mysql": "^2.11.1",
     "node-constellation": "0.0.5",
     "nodemon": "^1.10.2",
-    "procfs-stats": "^1.0.2",
     "sequelize": "^3.24.1",
     "shimmer": "^1.1.0",
     "solarlunar": "^1.0.0",

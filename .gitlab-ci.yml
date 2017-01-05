@@ -1,8 +1,8 @@
-image: node:4.4.4
+image: node:6.9.3
 
 services:
-  - mysql:latest
-  - redis:latest
+  - mysql:5.7.16
+  - redis:3.0.7
 
 variables:
   MYSQL_DATABASE: shard
