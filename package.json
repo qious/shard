@@ -15,7 +15,7 @@
     "cover": "NODE_ENV=test nyc --reporter html --reporter text-summary mocha --require co-mocha --colors server/resource/mocha_bootload 'server/**/*.test.js'",
     "start": "pm2 start pm2.json",
     "commit": "git cz",
-    "postmerge": "npm install"
+    "postmerge": "git submodule update && npm install"
   },
   "author": "qiujun",
   "devDependencies": {
