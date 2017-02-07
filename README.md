@@ -11,6 +11,8 @@
 #### **开发环境搭建**
 
 ```bash
+git submodule init
+git submodule update
 npm install
 sudo npm install -g commitizen cz-conventional-changelog
 ```

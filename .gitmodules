@@ -1,0 +1,4 @@
+[submodule "client"]
+	path = client
+	url = git@gitlab.ticknet.cn:qiujun/shard-front.git
+	branch = master
