@@ -3,6 +3,9 @@
     {
       "name": "shard",
       "script": "server/app.js",
+      "env": {
+        "NODE_ENV": "production"
+      },
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "exec_mode": "cluster",
       "instances": 2,
@@ -17,6 +20,9 @@
     {
       "name": "shard-cron",
       "script": "server/cron.js",
+      "env": {
+        "NODE_ENV": "production"
+      },
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "watch": false,
       "merge_logs": true,
