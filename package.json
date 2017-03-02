@@ -1,6 +1,6 @@
 {
   "name": "shard",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "engines": {
     "node": ">=6.9.3"
   },
