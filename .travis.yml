@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - "6.1"
+
+services:
+  - mysql
+  - redis-server
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -q
+
+before_script:
+  - mysql -e 'CREATE DATABASE shard;'
+  - cp server/config/travis_ci.js server/config/local.js
+
+script:
+  - npm run lint
+  - npm run cover
+
+after_success:
+  - npm install coveralls
+  - cat ./coverage/lcov.info | coveralls

@@ -1,23 +1,32 @@
 #### 项目状态
 
 ##### Master
-[![build status](https://gitlab.ticknet.cn/qiujun/shard/badges/master/build.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/master)
-[![coverage report](https://gitlab.ticknet.cn/qiujun/shard/badges/master/coverage.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/master)
+
+[![Build Status](https://travis-ci.org/qious/shard.svg?branch=master)](https://travis-ci.org/qious/shard)
+[![Coverage Status](https://coveralls.io/repos/github/qious/shard/badge.svg?branch=master)](https://coveralls.io/github/qious/shard?branch=master)
 
 ##### Develop
-[![build status](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/build.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
-[![coverage report](https://gitlab.ticknet.cn/qiujun/shard/badges/develop/coverage.svg)](https://gitlab.ticknet.cn/qiujun/shard/commits/develop)
 
-#### **开发环境搭建**
+[![Build Status](https://travis-ci.org/qious/shard.svg?branch=develop)](https://travis-ci.org/qious/shard)
+[![Coverage Status](https://coveralls.io/repos/github/qious/shard/badge.svg?branch=develop)](https://coveralls.io/github/qious/shard?branch=develop)
+
+#### **依赖安装**
 
 ```bash
 git submodule init
 git submodule update
 npm install
-sudo npm install -g commitizen cz-conventional-changelog
 ```
 
-#### **后端开发**
+#### **线上运行**
+
+```bash
+cp server/config/default.js server/config/local.js
+cp pm2.sample.json pm2.json
+npm run start
+```
+
+#### **协作开发**
 
 * 启动服务器
 
@@ -39,19 +48,6 @@ npm run cover               # 测试覆盖率
 npm run lint
 ```
 
-* commit代码
-
-```bash
-git cz # 也可使用 npm run commit
-```
-
-#### **线上运行**
-
-```bash
-cp pm2.sample.json pm2.json
-npm run start
-```
-
 #### **目录结构**
 
     .
@@ -68,3 +64,7 @@ npm run start
         ├── spec              // swagger
         └── app.js            // 入口文件
         └── cron.js           // 计划任务入口文件
+
+#### **关联项目**
+* [shard-front](https://github.com/qious/shard-front) 提供前端页面展示
+* [shadowsocks-manyuser](https://github.com/qious/shadowsocks-manyuser) 提供SS服务支持

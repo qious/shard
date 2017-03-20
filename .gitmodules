@@ -1,4 +1,4 @@
 [submodule "client"]
 	path = client
-	url = git@gitlab.ticknet.cn:qiujun/shard-front.git
+	url = https://github.com/qious/shard-front.git
 	branch = dist
