@@ -65,6 +65,8 @@ let config = {
     bucket: 'bucket',
     operator: 'operator',
     password: 'password',
+    endpoint: 'endpoint',
+    base_url: 'https://example.com', // 请求地址
   },
 
   ss: {
@@ -72,6 +74,7 @@ let config = {
     max_port: 50999,
     init_transfer_enable: 10737418240, // 10G 流量
     random_password_pool: '0123456789abcdefghijklmnopqrstuvwxyz', // 随机密码字符集
+    transfer_log_save_days: 180,
   },
 
   logger: {

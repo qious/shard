@@ -1,6 +1,6 @@
 {
   "name": "shard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "engines": {
     "node": ">=6.9.3"
   },
@@ -46,15 +46,16 @@
     "lodash": "^4.15.0",
     "moder": "^1.3.2",
     "moment": "^2.17.1",
+    "multer": "^1.3.0",
     "mysql": "^2.11.1",
     "node-constellation": "0.0.5",
-    "node-upyun-sdk": "^1.0.4",
     "nodemon": "^1.10.2",
     "sequelize": "^3.24.1",
     "shimmer": "^1.1.0",
     "solarlunar": "^1.0.0",
     "swagger-schema-official": "^2.0.0-bab6bed",
     "sway": "^1.0.0",
+    "upyun": "^2.0.4",
     "wechat-enterprise": "^0.1.1",
     "wechat-enterprise-api": "git+https://github.com/qious/wechat-enterprise-api.git",
     "winston": "^2.2.0",
