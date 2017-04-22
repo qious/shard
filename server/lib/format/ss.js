@@ -4,8 +4,6 @@ const _ = require('lodash');
 const moment = require('moment');
 const filesize = require('filesize');
 
-moment.locale('zh-cn');
-
 let ss = module.exports = {};
 
 ss.user = function (data) {
@@ -40,6 +38,7 @@ ss.user = function (data) {
 };
 
 ss.node = function (data) {
+  delete data.active_at;
   data.created_at = moment(data.created_at).fromNow();
   data.updated_at = moment(data.updated_at).fromNow();
   return data;
