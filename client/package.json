@@ -1,9 +1,8 @@
 {
-  "name": "shard-front",
-  "version": "0.2.0",
-  "description": "零碎代码 前端",
+  "name": "ss-panel-front",
+  "version": "0.3.0",
+  "description": "shadowsocks 管理面板 前端",
   "author": "邱俊 <i@qiujun.me>",
-  "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",

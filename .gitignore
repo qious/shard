@@ -5,10 +5,9 @@
 *.log
 *.out
 
-.nyc_output
-coverage
-
 node_modules
 
-pm2.json
+server/pm2.json
+server/.nyc_output
+server/coverage
 server/config/local.*

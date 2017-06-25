@@ -49,7 +49,7 @@ npm run cover               # 测试覆盖率
 
 成员角色分为用户与管理员，下图展示为管理员角色
 
-![效果展示](screenshot/ss_admin.gif)
+![效果展示](screenshot/1.gif)
 
 ### **关联项目**
 
