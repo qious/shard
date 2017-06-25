@@ -70,7 +70,7 @@
               </div>
               <div class="weui-cell__ft">
                 <i class="weui-loading" v-if="isLoading.node"></i>
-                <span v-else>{{node.updated_at}}</span>
+                <span v-else>{{node.updatedAt}}</span>
               </div>
             </div>
             <div class="weui-cell">
@@ -79,7 +79,7 @@
               </div>
               <div class="weui-cell__ft">
                 <i class="weui-loading" v-if="isLoading.node"></i>
-                <span v-else>{{node.created_at}}</span>
+                <span v-else>{{node.createdAt}}</span>
               </div>
             </div>
           </div>

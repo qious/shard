@@ -10,7 +10,7 @@
             </div>
             <div class="weui-cell__ft">
               <i class="weui-loading" v-if="loading"></i>
-              <span v-else>{{user.flow_up_v}}</span>
+              <span v-else>{{user.flowUpV}}</span>
             </div>
           </div>
           <div class="weui-cell">
@@ -19,10 +19,12 @@
             </div>
             <div class="weui-cell__ft">
               <i class="weui-loading" v-if="loading"></i>
-              <span v-else>{{user.flow_down_v}}</span>
+              <span v-else>{{user.flowDownV}}</span>
             </div>
           </div>
-          <router-link :to="{name: 'transfer-stat', params}"  class="weui-cell weui-cell_access weui-cell_link">
+          <router-link
+            class="weui-cell weui-cell_access weui-cell_link"
+            :to="{name: 'transfer-stat', params}">
             <div class="weui-cell__bd">流量详情</div>
             <span class="weui-cell__ft"></span>
           </router-link>
