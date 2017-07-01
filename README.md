@@ -42,7 +42,6 @@ npm run dev
 cd /path/to/ss-panel/server
 npm run test                # 运行所有测试
 npm run test -- -g network  # 只测试 network
-npm run cover               # 测试覆盖率
 ```
 
 ### **效果展示**

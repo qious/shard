@@ -1,8 +1,13 @@
 {
   "name": "ss-panel-front",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "shadowsocks 管理面板 前端",
-  "author": "邱俊 <i@qiujun.me>",
+  "author": "qiujun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qious/ss-panel.git"
+  },
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
