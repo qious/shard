@@ -23,7 +23,7 @@ before_script:
 script:
   - cd server
   - npm run lint
-  - npm run cover
+  - npm run test
   - cd ..
 
 after_success:
