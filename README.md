@@ -52,4 +52,4 @@ npm run test -- -g network  # 只测试 network
 
 ### **关联项目**
 
-* [shadowsocks-manyuser](https://github.com/qious/shadowsocks-manyuser)
+* [shadowsocks](https://github.com/qious/shadowsocks)
