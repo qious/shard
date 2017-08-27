@@ -10,7 +10,10 @@
       <span class="weui-loadmore__tips">加载中...</span>
     </div>
     <div class="weui-cells">
-      <a :href="item.url"  class="weui-cell weui-cell_access" v-for="item in items">
+      <a class="weui-cell weui-cell_access"
+        :href="item.url"
+        :key="item.offerId"
+        v-for="item in items">
         <div class="weui-cell__bd">
           <p>{{item.name}}</p>
         </div>

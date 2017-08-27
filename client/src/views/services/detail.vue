@@ -60,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.weui-textarea {
+  word-break: break-all;
+}
+</style>

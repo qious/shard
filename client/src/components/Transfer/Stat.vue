@@ -15,7 +15,7 @@
           <span class="weui-loadmore__tips">暂无流量信息</span>
         </div>
         <div class="weui-cells" v-else>
-          <div class="weui-cell" v-for="item in data">
+          <div class="weui-cell" v-for="item in data" :key="item.date">
             <div class="weui-cell__bd">
               {{item.date.slice(0, 2) + '月' + item.date.slice(3, 5) + '日'}}
             </div>
