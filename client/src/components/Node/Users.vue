@@ -15,7 +15,7 @@
           <span class="weui-loadmore__tips">暂无用户信息</span>
         </div>
         <div class="weui-cells" v-else>
-          <div class="weui-cell" v-for="user in filtered">
+          <div class="weui-cell" v-for="user in filtered" :key="user.userId">
             <div class="weui-cell__bd">{{user.name}}</div>
             <div class="weui-cell__ft">{{user.activeAt}}</div>
           </div>

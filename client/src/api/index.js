@@ -2,6 +2,8 @@ import 'whatwg-fetch'
 import _ from 'lodash'
 import url from 'url'
 
+let isAuthorizing = false
+
 let getLoginUrl = function (config) {
   return url.format({
     protocol: 'https',
@@ -13,8 +15,13 @@ let getLoginUrl = function (config) {
 }
 
 let handleHttpError = function (status, data) {
+  if (isAuthorizing) {
+    return false
+  }
+
   switch (status) {
     case 401:
+      isAuthorizing = true
       location.href = getLoginUrl(data.extra)
       return true
     default:

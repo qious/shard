@@ -1,3 +1,5 @@
+import 'weui/dist/style/weui.css'
+import 'font-awesome/css/font-awesome.min.css'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Router from './router'

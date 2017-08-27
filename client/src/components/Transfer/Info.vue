@@ -24,7 +24,7 @@
           </div>
           <router-link
             class="weui-cell weui-cell_access weui-cell_link"
-            :to="{name: 'transfer-stat', params}">
+            :to="loading? {} : {name: 'transfer-stat', params}">
             <div class="weui-cell__bd">流量详情</div>
             <span class="weui-cell__ft"></span>
           </router-link>

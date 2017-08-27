@@ -15,12 +15,14 @@
   },
   "dependencies": {
     "echarts-liquidfill": "^1.0.4",
+    "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
     "path": "^0.12.7",
     "url": "^0.11.0",
     "vue": "^2.2.2",
     "vue-echarts": "^2.3.3",
     "vue-router": "^2.3.0",
+    "weui": "^1.1.2",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
