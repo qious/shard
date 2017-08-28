@@ -11,6 +11,22 @@
               </div>
             </div>
           </div>
+          <div class="weui-cells">
+            <div class="weui-cell weui-cell_uri">
+              <div class="weui-cell__bd weui-cell_primary">
+                <input class="weui-input" type="text" v-model="serviceUri">
+              </div>
+              <div class="weui-cell__ft">
+                <button
+                  class="weui-vcode-btn"
+                  v-clipboard="serviceUri"
+                  @success="copySuccess"
+                  @error="copyError">
+                  复制
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -32,7 +48,8 @@ export default {
     return {
       serviceId: null,
       isLoading: false,
-      serviceJson: '加载中...'
+      serviceJson: '加载中...',
+      serviceUri: 'ss://'
     }
   },
 
@@ -51,11 +68,28 @@ export default {
         }
       }).then(({data}) => {
         this.isLoading = false
+        let name = data.name
         let filter = ['server', 'server_port', 'password', 'method']
         data.server_port = data.port
         data = _.pick(data, filter)
         this.serviceJson = JSON.stringify(data, null, 4)
+        this.serviceUri = this.genUri(name, data)
       })
+    },
+
+    genUri (name, data) {
+      let user = `${data.method}:${data.password}`
+      user = new Buffer(user).toString('base64')
+      user = user.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+      return `ss://${user}@${data.server}:${data.server_port}#${encodeURIComponent(name)}`
+    },
+
+    copySuccess () {
+      alert('复制成功')
+    },
+
+    copyError () {
+      alert('复制失败')
     }
   }
 }
@@ -64,5 +98,10 @@ export default {
 <style scoped>
 .weui-textarea {
   word-break: break-all;
+}
+.weui-cell_uri {
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
 }
 </style>
