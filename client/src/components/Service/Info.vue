@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="comp-service-info">
     <div class="weui-panel__hd">{{title}}</div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">

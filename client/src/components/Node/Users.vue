@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="comp-node-users">
     <div class="weui-panel__hd">
       活跃用户
       <i class="fa fa-expand" v-if="!showAll" @click="showAll = true"></i>
@@ -45,8 +45,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.fa {
-  float: right;
+<style lang="less">
+.comp-node-users {
+  .fa.fa-expand,
+  .fa.fa-compress {
+    float: right;
+  }
 }
 </style>

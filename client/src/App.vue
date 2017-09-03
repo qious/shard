@@ -1,5 +1,5 @@
 <template>
-  <div class="weui-tab">
+  <div class="app weui-tab">
     <div
       class="weui-tab__panel"
       :style="{'padding-bottom': tabberShow? '50px':'0'}">
@@ -103,13 +103,15 @@ export default {
 }
 </script>
 
-<style scoped>
-.weui-tab {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
+<style lang="less">
+.app {
+  &.weui-tab {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+  }
 }
 </style>

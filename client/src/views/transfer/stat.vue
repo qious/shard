@@ -62,23 +62,27 @@ export default {
 }
 </script>
 
-<style scoped>
-.detail {
-  position: relative;
-}
-.navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.navbar .back {
-  position: absolute;
-  top: 15px;
-  color: #fff;
-  left: 15px;
-}
-.weui-panel {
-  margin-top: 0;
+<style lang="less">
+.transfer {
+  .detail {
+    position: relative;
+  }
+
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    .back {
+      position: absolute;
+      top: 15px;
+      color: #fff;
+      left: 15px;
+    }
+  }
+
+  .weui-panel {
+    margin-top: 0;
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="profile">
     <transfer-chart-sum :user="profile"></transfer-chart-sum>
 
     <div class="weui-panel">
@@ -81,8 +81,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.weui-panel {
-  margin-top: 0;
+<style lang="less">
+.profile {
+  .weui-panel {
+    margin-top: 0;
+  }
 }
 </style>

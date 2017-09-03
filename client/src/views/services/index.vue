@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="services">
     <div class="weui-panel weui-panel_access">
       <service-info :title="'全局配置'" :user="profile" :loading="isLoading"></service-info>
 
@@ -72,11 +72,13 @@ export default {
 }
 </script>
 
-<style scoped>
-.weui-media-box__info {
-  margin-top: 10px;
-}
-.weui-media-box_appmsg .weui-media-box__thumb {
-  vertical-align: middle;
+<style lang="less">
+.services {
+  .weui-media-box__info {
+    margin-top: 10px;
+  }
+  .weui-media-box_appmsg .weui-media-box__thumb {
+    vertical-align: middle;
+  }
 }
 </style>

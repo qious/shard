@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="profile-edit">
     <div class="weui-cells__title">服务信息</div>
     <div class="weui-cells weui-cells_form weui-panel__bd">
       <div class="weui-cell" :class="{'weui-cell_warn': isPortError}">
@@ -123,11 +123,13 @@ export default {
 }
 </script>
 
-<style scoped>
-.weui-btn {
-  margin: 0 5px;
-}
-.weui-btn:after {
-  border: 0px;
+<style lang="less">
+.profile-edit {
+  .weui-btn {
+    margin: 0 5px;
+    &:after {
+      border: 0px;
+    }
+  }
 }
 </style>
