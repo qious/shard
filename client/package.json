@@ -1,6 +1,6 @@
 {
   "name": "ss-panel-front",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "shadowsocks 管理面板 前端",
   "author": "qiujun",
   "license": "MIT",
