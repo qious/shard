@@ -44,12 +44,12 @@ export default {
       if (!this.stat || !this.stat.length) {
         return []
       }
-      let data = _.reverse(this.stat)
+      let data = _.reverse(_.slice(this.stat))
 
       if (!this.fold || this.showAll) {
         return data
       }
-      return _.slice(this.stat, 0, 5)
+      return _.slice(data, 0, 5)
     }
   }
 }
