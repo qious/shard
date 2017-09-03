@@ -1,5 +1,5 @@
 <template>
-  <div class="detail">
+  <div class="nodes-detail">
     <transfer-chart-stat
       :data="stat"
       :loading="isLoading.stat">
@@ -92,7 +92,8 @@
       </node-users>
       <transfer-stat
         :loading="isLoading.stat"
-        :stat="stat">
+        :stat="stat"
+        :fold="true">
       </transfer-stat>
     </div>
   </div>
@@ -170,29 +171,31 @@ export default {
 }
 </script>
 
-<style scoped>
-.detail {
+<style lang="less">
+.nodes-detail {
   position: relative;
-}
-.navbar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.navbar .back,
-.navbar .edit {
-  position: absolute;
-  top: 15px;
-  color: #fff;
-}
-.navbar .back {
-  left: 15px;
-}
-.navbar .edit {
-  right: 15px;
-}
-.weui-panel {
-  margin-top: 0;
+
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    .back, .edit {
+      position: absolute;
+      top: 15px;
+      color: #fff;
+    }
+    .back {
+      left: 15px;
+    }
+    .edit {
+      right: 15px;
+    }
+  }
+
+  .weui-panel {
+    margin-top: 0;
+  }
 }
 </style>

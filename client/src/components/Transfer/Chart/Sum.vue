@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="comp-transfer-chart-sum">
     <background></background>
     <div class="transfer">
       <e-charts :options="options"></e-charts>
@@ -71,23 +71,25 @@ export default {
 
 </script>
 
-<style scoped>
-.transfer {
-  width: 100%;
-  height: 230px;
-  margin-top: -230px;
-  text-align: center;
-  position: relative;
-}
-.transfer > .echarts {
-  width: 200px;
-  height: 200px;
-  margin: auto;
-}
-.transfer > .value {
-  margin-top: -18px;
-  font-size: 18px;
-  font-weight: 300;
-  color: #fff;
+<style lang="less">
+.comp-transfer-chart-sum {
+  .transfer {
+    width: 100%;
+    height: 230px;
+    margin-top: -230px;
+    text-align: center;
+    position: relative;
+  }
+  .transfer > .echarts {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
+  .transfer > .value {
+    margin-top: -18px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+  }
 }
 </style>

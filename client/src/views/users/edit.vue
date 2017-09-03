@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="users-edit">
     <div class="weui-loadmore" v-show="isLoading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
@@ -184,14 +184,17 @@ export default {
 }
 </script>
 
-<style scoped>
-.weui-cell .weui-cell__ft {
-  font-size: 1em;
-}
-.weui-btn {
-  margin: 0 5px;
-}
-.weui-btn:after {
-  border: 0px;
+<style lang="less">
+.users-edit {
+  .weui-cell .weui-cell__ft {
+    font-size: 1em;
+  }
+
+  .weui-btn {
+    margin: 0 5px;
+    &:after {
+      border: 0px;
+    }
+  }
 }
 </style>

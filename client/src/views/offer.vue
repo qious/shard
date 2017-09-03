@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="offer">
     <div class="page__hd">
       <h1 class="page__title">捐助</h1>
       <p class="page__desc">为平等的获取知识，如果你有空闲的服务器，欢迎提供给本项目进行多节点部署。</p>
@@ -52,19 +52,21 @@ export default {
 }
 </script>
 
-<style scoped>
-.page__hd {
-  padding: 40px;
-}
-.page__title {
-  text-align: left;
-  font-size: 20px;
-  font-weight: 400;
-}
-.page__desc {
-  margin-top: 5px;
-  color: #888;
-  text-align: left;
-  font-size: 14px;
+<style lang="less">
+.offer {
+  .page__hd {
+    padding: 40px;
+  }
+  .page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .page__desc {
+    margin-top: 5px;
+    color: #888;
+    text-align: left;
+    font-size: 14px;
+  }
 }
 </style>

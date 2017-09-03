@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="users">
     <div class="weui-loadmore" v-if="isLoading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">加载中...</span>
@@ -65,23 +65,25 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
+.users {
+  .weui-media-box__title {
+    font-size: 1.1em;
+    .value {
+      float: right;
+      color: #FB7886;
+      span:last-child {
+        font-size: 0.6em;
+      }
+    }
+  }
 
-.weui-media-box__title {
-  font-size: 1.1em;
-}
-.weui-media-box__title .value {
-  float: right;
-  color: #FB7886;
-}
-.weui-media-box__title .value span:last-child {
-  font-size: 0.6em;
-}
-.weui-media-box__info {
-  margin-top: 10px;
-}
-.weui-media-box__info .weui-media-box__info__meta:last-child {
-  float: right;
-  padding-right: 0;
+  .weui-media-box__info {
+    margin-top: 10px;
+    .weui-media-box__info__meta:last-child {
+      float: right;
+      padding-right: 0;
+    }
+  }
 }
 </style>

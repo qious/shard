@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="comp-transfer-stat">
     <div class="weui-panel__hd">
       流量详情
-      <i class="fa fa-expand" v-if="!showAll" @click="showAll = true"></i>
-      <i class="fa fa-compress" v-else @click="showAll = false"></i>
+      <i class="fa fa-expand" v-if="fold && !showAll" @click="showAll = true"></i>
+      <i class="fa fa-compress" v-else-if="fold" @click="showAll = false"></i>
     </div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
@@ -31,7 +31,7 @@
 import _ from 'lodash'
 
 export default {
-  props: ['loading', 'stat'],
+  props: ['loading', 'stat', 'fold'],
 
   data () {
     return {
@@ -41,33 +41,25 @@ export default {
 
   computed: {
     data () {
-      return _.slice(this.stat, 0, this.showAll ? this.stat.length : 5)
-    }
-  },
-
-  created () {
-    this.reverseStat()
-  },
-
-  methods: {
-    reverseStat () {
       if (!this.stat || !this.stat.length) {
-        return false
+        return []
       }
-      this.stat = _.reverse(this.stat)
-    }
-  },
+      let data = _.reverse(this.stat)
 
-  watch: {
-    stat () {
-      this.reverseStat()
+      if (!this.fold || this.showAll) {
+        return data
+      }
+      return _.slice(this.stat, 0, 5)
     }
   }
 }
 </script>
 
-<style scoped>
-.fa {
-  float: right;
+<style lang="less">
+.comp-transfer-stat {
+  .fa-expand,
+  .fa-compress {
+    float: right;
+  }
 }
 </style>

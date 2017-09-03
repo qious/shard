@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="comp-transfer-info">
     <div class="weui-panel__hd">{{title || '流量信息'}}</div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">

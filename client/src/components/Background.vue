@@ -1,8 +1,8 @@
 <template>
-  <div class="background"></div>
+  <div class="comp-background"></div>
 </template>
 
-<style scoped>
+<style lang="less">
 @keyframes colorful {
   0%   {background-color: rgba(255, 99, 132, 1);}
   20%  {background-color: rgba(54, 162, 235, 1);}
@@ -11,7 +11,8 @@
   80%  {background-color: rgba(153, 102, 255, 1);}
   100% {background-color: rgba(255, 159, 64, 1);}
 }
-.background {
+
+.comp-background {
   width: 100%;
   height: 230px;
   animation-name: colorful;

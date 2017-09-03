@@ -1,5 +1,5 @@
 <template>
-  <div class="weui-panel weui-panel_access">
+  <div class="nodes weui-panel weui-panel_access">
     <div class="weui-panel__bd">
       <div class="weui-loadmore" v-if="isLoading">
         <i class="weui-loading"></i>
@@ -78,21 +78,24 @@ export default {
 }
 </script>
 
-<style scoped>
-.weui-media-box__info {
-  margin-top: 10px;
-}
-.weui-media-box_appmsg .weui-media-box__thumb {
-  vertical-align: middle;
-}
-.weui-media-box__title .visible,
-.weui-media-box__title .hidden {
-  float: right;
-}
-.weui-media-box__title .visible {
-  color: #36A2EB;
-}
-.weui-media-box__title .hidden {
-  color: #FB7886;
+<style lang="less">
+.nodes {
+  .weui-media-box__info {
+    margin-top: 10px;
+  }
+  .weui-media-box_appmsg .weui-media-box__thumb {
+    vertical-align: middle;
+  }
+
+  .weui-media-box__title  {
+    .visible {
+      float: right;
+      color: #36A2EB;
+    }
+    .hidden {
+      float: right;
+      color: #FB7886;
+    } 
+  }
 }
 </style>
