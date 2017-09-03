@@ -92,7 +92,7 @@
         <div class="weui-cell__ft">
           <button
             class="copy"
-            v-clipboard="service.server"
+            v-clipboard="service.uri"
             @success="copySuccess"
             @error="copyError"
             v-if="!isLoading">
