@@ -146,12 +146,7 @@ export default {
   methods: {
     fetch () {
       this.isLoading = true
-      let serviceId = this.serviceId
-      Api('/api/services/detail', {
-        query: {
-          serviceId
-        }
-      }).then(({ data }) => {
+      Api(`/api/services/${this.serviceId}`).then(({ data }) => {
         this.isLoading = false
         this.service = data
         this.service['uri'] = this.genUri(data)

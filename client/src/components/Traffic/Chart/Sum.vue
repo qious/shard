@@ -1,10 +1,10 @@
 <template>
-  <div class="comp-transfer-chart-sum">
+  <div class="comp-traffic-chart-sum">
     <background></background>
-    <div class="transfer">
+    <div class="traffic">
       <e-charts :options="options"></e-charts>
       <div class="value">
-        {{(user.transferUsedV || '0 B') + ' / ' + (user.transferEnableV || '0 B')}}
+        {{(user.trafficUsedV || '0 B') + ' / ' + (user.trafficEnableV || '0 B')}}
       </div>
     </div>
   </div>
@@ -14,7 +14,7 @@
 import ECharts from 'vue-echarts/components/ECharts.vue'
 import 'echarts-liquidfill'
 import Background from '../../Background'
-import {getTransferPercent} from '../../../libs/utils'
+import {getTrafficPercent} from '../../../libs/utils'
 
 export default {
   props: ['user'],
@@ -48,17 +48,17 @@ export default {
   },
 
   created () {
-    if (this.user.transferEnable || this.user.transferUsed) {
+    if (this.user.trafficEnable || this.user.trafficUsed) {
       this.updateChart()
     }
   },
 
   methods: {
     updateChart () {
-      let transferEnable = this.user.transferEnable
-      let transferUsed = this.user.transferUsed
-      let transferPercent = getTransferPercent(transferEnable, transferUsed)
-      this.options.series.data = [transferPercent]
+      let trafficEnable = this.user.trafficEnable
+      let trafficUsed = this.user.trafficUsed
+      let trafficPercent = getTrafficPercent(trafficEnable, trafficUsed)
+      this.options.series.data = [trafficPercent]
     }
   },
 
@@ -72,20 +72,20 @@ export default {
 </script>
 
 <style lang="less">
-.comp-transfer-chart-sum {
-  .transfer {
+.comp-traffic-chart-sum {
+  .traffic {
     width: 100%;
     height: 230px;
     margin-top: -230px;
     text-align: center;
     position: relative;
   }
-  .transfer > .echarts {
+  .traffic > .echarts {
     width: 200px;
     height: 200px;
     margin: auto;
   }
-  .transfer > .value {
+  .traffic > .value {
     margin-top: -18px;
     font-size: 18px;
     font-weight: 300;

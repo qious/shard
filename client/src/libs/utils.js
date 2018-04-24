@@ -1,14 +1,14 @@
 import _ from 'lodash'
 
-let getTransferPercent = function (transferEnable, transferUsed) {
-  let unused = transferEnable - transferUsed
-  if (unused < 0 || transferEnable <= 0) {
+let getTrafficPercent = function (trafficEnable, trafficUsed) {
+  let unused = trafficEnable - trafficUsed
+  if (unused < 0 || trafficEnable <= 0) {
     return 0
   }
-  return _.round(unused / transferEnable, 4)
+  return _.round(unused / trafficEnable, 4)
 }
 
-let formatTransfer = function (input, reverse) {
+let formatTraffic = function (input, reverse) {
   let weight = 1073741824
   if (reverse) {
     return input / weight
@@ -24,7 +24,7 @@ let formatBoolean = function (input, reverse) {
 }
 
 export {
-  getTransferPercent,
-  formatTransfer,
+  getTrafficPercent,
+  formatTraffic,
   formatBoolean
 }

@@ -1,5 +1,5 @@
 {
-  "name": "ss-panel-front",
+  "name": "ss-panel-client",
   "version": "0.3.4",
   "description": "shadowsocks 管理面板 前端",
   "author": "qiujun",

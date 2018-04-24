@@ -1,6 +1,6 @@
 <template>
   <div class="users-detail">
-    <transfer-chart-sum :user="user"></transfer-chart-sum>
+    <traffic-chart-sum :user="user"></traffic-chart-sum>
 
     <div class="navbar">
       <router-link class="back" :to="{name: 'users'}">
@@ -12,11 +12,11 @@
     </div>
 
     <div class="weui-panel">
-      <transfer-info
+      <traffic-info
         :user="user"
         :loading="isLoading"
         :isprofile="false">
-      </transfer-info>
+      </traffic-info>
 
       <div class="weui-panel__hd">服务信息</div>
       <div class="weui-panel__bd">
@@ -111,14 +111,14 @@
 
 <script>
 import Api from '../../api'
-import TransferChartSum from '../../components/Transfer/Chart/Sum'
-import TransferInfo from '../../components/Transfer/Info'
+import TrafficChartSum from '../../components/Traffic/Chart/Sum'
+import TrafficInfo from '../../components/Traffic/Info'
 
 export default {
   props: ['profile'],
   components: {
-    TransferChartSum,
-    TransferInfo
+    TrafficChartSum,
+    TrafficInfo
   },
 
   data () {

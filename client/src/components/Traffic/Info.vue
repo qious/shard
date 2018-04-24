@@ -1,5 +1,5 @@
 <template>
-  <div class="comp-transfer-info">
+  <div class="comp-traffic-info">
     <div class="weui-panel__hd">{{title || '流量信息'}}</div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
@@ -24,7 +24,7 @@
           </div>
           <router-link
             class="weui-cell weui-cell_access weui-cell_link"
-            :to="loading? {} : {name: 'transfer-stat', params}">
+            :to="loading? {} : {name: 'traffic-stat', params}">
             <div class="weui-cell__bd">流量详情</div>
             <span class="weui-cell__ft"></span>
           </router-link>

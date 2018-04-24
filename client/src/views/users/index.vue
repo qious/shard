@@ -14,14 +14,14 @@
           <div class="weui-media-box__bd">
             <h4 class="weui-media-box__title">
               <span>{{item.name}}</span>
-              <span class="value">{{item.transferUsedV}}</span>
+              <span class="value">{{item.trafficUsedV}}</span>
             </h4>
             <ul class="weui-media-box__info">
               <li class="weui-media-box__info__meta">
                 {{'活跃于 '+ item.activeAt}}
               </li>
               <li class="weui-media-box__info__meta">
-                {{'已用，共 ' + item.transferEnableV}}
+                {{'已用，共 ' + item.trafficEnableV}}
               </li>
             </ul>
           </div>
@@ -33,7 +33,7 @@
 
 <script>
 import Api from '../../api'
-import {getTransferPercent} from '../../libs/utils'
+import {getTrafficPercent} from '../../libs/utils'
 
 export default {
   data () {
@@ -53,8 +53,8 @@ export default {
       Api('/api/users').then((res) => {
         this.isLoading = false
         for (let item of res.data) {
-          let transferPercent = getTransferPercent(item.transferEnable, item.transferUsed) * 100
-          item.transferPercent = transferPercent.toFixed(2)
+          let trafficPercent = getTrafficPercent(item.trafficEnable, item.trafficUsed) * 100
+          item.trafficPercent = trafficPercent.toFixed(2)
         }
         this.items = res.data
       }).catch(() => {

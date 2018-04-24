@@ -29,14 +29,14 @@
             <i class="weui-icon-warn"></i>
           </div>
         </div>
-        <div class="weui-cell" :class="{'weui-cell_warn': isTransferError}">
+        <div class="weui-cell" :class="{'weui-cell_warn': isTrafficError}">
           <div class="weui-cell__hd">
             <label class="weui-label">流量上限</label>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" type="number" placeholder="请输入流量上限" v-model="transferEnable">
+            <input class="weui-input" type="number" placeholder="请输入流量上限" v-model="trafficLimit">
           </div>
-          <div class="weui-cell__ft" v-if="isTransferError">
+          <div class="weui-cell__ft" v-if="isTrafficError">
             <i class="weui-icon-warn"></i>
           </div>
           <div class="weui-cell__ft" v-else>GB</div>
@@ -98,7 +98,7 @@
 
 <script>
 import Api from '../../api'
-import {formatTransfer, formatBoolean} from '../../libs/utils'
+import {formatTraffic, formatBoolean} from '../../libs/utils'
 
 export default {
   data () {
@@ -106,7 +106,7 @@ export default {
       userId: null,
       port: null,
       password: null,
-      transferEnable: null,
+      trafficLimit: null,
       name: null,
       isAdmin: null,
       isLocked: null,
@@ -125,13 +125,13 @@ export default {
     isPasswordError () {
       return this.password && (this.password.length < 6 || this.password.length > 12)
     },
-    isTransferError () {
-      return this.transferEnable && isNaN(this.transferEnable)
+    isTrafficError () {
+      return this.trafficLimit && isNaN(this.trafficLimit)
     },
     isValid () {
       return this.port && !this.isPortError &&
              this.password && !this.isPasswordError &&
-             this.transferEnable && !this.isTransferError &&
+             this.trafficLimit && !this.isTrafficError &&
              this.name && this.isAdmin && this.isLocked
     }
   },
@@ -149,7 +149,7 @@ export default {
         this.isLoading = false
         this.port = data.port
         this.password = data.password
-        this.transferEnable = formatTransfer(data.transferEnable, true)
+        this.trafficLimit = formatTraffic(data.trafficLimit, true)
         this.name = data.name
         this.isAdmin = formatBoolean(data.isAdmin, true)
         this.isLocked = formatBoolean(data.isLocked, true)
@@ -168,7 +168,7 @@ export default {
         userId: this.userId,
         port: Number(this.port),
         password: this.password,
-        transferEnable: formatTransfer(this.transferEnable),
+        trafficLimit: formatTraffic(this.trafficLimit),
         name: this.name,
         isAdmin: formatBoolean(this.isAdmin),
         isLocked: formatBoolean(this.isLocked)

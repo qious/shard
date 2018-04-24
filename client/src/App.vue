@@ -25,14 +25,6 @@
       </router-link>
       <router-link
         class="weui-tabbar__item"
-        :class="tabberClass[2]"
-        :to="{name: 'offer'}"
-        v-if="!profile.isAdmin">
-        <i class="fa fa-heart weui-tabbar__icon"></i>
-        <p class="weui-tabbar__label">捐助</p>
-      </router-link>
-      <router-link
-        class="weui-tabbar__item"
         :class="tabberClass[3]"
         :to="{name: 'users'}"
         v-if="profile.isAdmin">
@@ -77,7 +69,7 @@ export default {
 
     updateTabber () {
       let now = this.$route.name
-      let tabbers = ['services', 'profile', 'offer', 'users', 'nodes']
+      let tabbers = ['services', 'profile', 'users', 'nodes']
 
       if (tabbers.indexOf(now) === -1) {
         this.tabberShow = false

@@ -1,13 +1,13 @@
 <template>
   <div class="profile">
-    <transfer-chart-sum :user="profile"></transfer-chart-sum>
+    <traffic-chart-sum :user="profile"></traffic-chart-sum>
 
     <div class="weui-panel">
-      <transfer-info
+      <traffic-info
         :user="profile"
         :loading="isLoading"
         :isprofile="true">
-      </transfer-info>
+      </traffic-info>
       <service-info
         :title="'服务信息'"
         :user="profile"
@@ -23,8 +23,8 @@
                 <p>姓名</p>
               </div>
               <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="!profile.name"></i>
-                <span v-else>{{profile.name}}</span>
+                <i class="weui-loading" v-if="!profile.nickname"></i>
+                <span v-else>{{profile.nickname}}</span>
               </div>
             </div>
             <div class="weui-cell">
@@ -32,8 +32,8 @@
                 <p>用户 ID</p>
               </div>
               <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="!profile.userId"></i>
-                <span v-else>{{profile.userId}}</span>
+                <i class="weui-loading" v-if="!profile.username"></i>
+                <span v-else>{{profile.username}}</span>
               </div>
             </div>
             <div class="weui-cell">
@@ -41,8 +41,8 @@
                 <p>最后在线</p>
               </div>
               <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="!profile.activeAt"></i>
-                <span v-else>{{profile.activeAt}}</span>
+                <i class="weui-loading" v-if="!profile.activedAt"></i>
+                <span v-else>{{profile.activedAt}}</span>
               </div>
             </div>
             <div class="weui-cell">
@@ -50,8 +50,8 @@
                 <p>加入时间</p>
               </div>
               <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="!profile.registAt"></i>
-                <span v-else>{{profile.registAt}}</span>
+                <i class="weui-loading" v-if="!profile.createdAt"></i>
+                <span v-else>{{profile.createdAt}}</span>
               </div>
             </div>
           </div>
@@ -62,15 +62,15 @@
 </template>
 
 <script>
-import TransferChartSum from '../../components/Transfer/Chart/Sum'
-import TransferInfo from '../../components/Transfer/Info'
+import TrafficChartSum from '../../components/Traffic/Chart/Sum'
+import TrafficInfo from '../../components/Traffic/Info'
 import ServiceInfo from '../../components/Service/Info'
 
 export default {
   props: ['profile'],
   components: {
-    TransferChartSum,
-    TransferInfo,
+    TrafficChartSum,
+    TrafficInfo,
     ServiceInfo
   },
   computed: {

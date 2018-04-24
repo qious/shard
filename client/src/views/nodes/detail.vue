@@ -1,9 +1,9 @@
 <template>
   <div class="nodes-detail">
-    <transfer-chart-stat
+    <traffic-chart-stat
       :data="stat"
       :loading="isLoading.stat">
-    </transfer-chart-stat>
+    </traffic-chart-stat>
 
     <div class="navbar">
       <router-link class="back" :to="{name: 'nodes'}">
@@ -90,11 +90,11 @@
         :loading="isLoading.users"
         :users="users">
       </node-users>
-      <transfer-stat
+      <traffic-stat
         :loading="isLoading.stat"
         :stat="stat"
         :fold="true">
-      </transfer-stat>
+      </traffic-stat>
     </div>
   </div>
 </template>
@@ -102,15 +102,15 @@
 <script>
 import Api from '../../api'
 import NodeUsers from '../../components/Node/Users'
-import TransferStat from '../../components/Transfer/Stat'
-import TransferChartStat from '../../components/Transfer/Chart/Stat'
+import TrafficStat from '../../components/Traffic/Stat'
+import TrafficChartStat from '../../components/Traffic/Chart/Stat'
 
 export default {
   props: ['profile'],
   components: {
     NodeUsers,
-    TransferStat,
-    TransferChartStat
+    TrafficStat,
+    TrafficChartStat
   },
 
   data () {
@@ -149,7 +149,7 @@ export default {
     fetchStat () {
       this.isLoading.stat = true
       let nodeId = this.nodeId
-      Api('/api/transfer/stat', {query: {nodeId}}).then(({data}) => {
+      Api('/api/traffic/stat', {query: {nodeId}}).then(({data}) => {
         this.isLoading.stat = false
         this.stat = data
       }).catch(() => {

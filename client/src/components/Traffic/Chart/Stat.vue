@@ -1,7 +1,7 @@
 <template>
-  <div class="comp-transfer-chart-stat">
+  <div class="comp-traffic-chart-stat">
     <background></background>
-    <div class="transfer">
+    <div class="traffic">
       <e-charts :options="options" v-if="options"></e-charts>
     </div>
   </div>
@@ -119,20 +119,20 @@ export default {
 </script>
 
 <style lang="less">
-.comp-transfer-chart-stat {
-  .transfer {
+.comp-traffic-chart-stat {
+  .traffic {
     width: 100%;
     height: 230px;
     margin-top: -230px;
     text-align: center;
     position: relative;
   }
-  .transfer > .echarts {
+  .traffic > .echarts {
     width: 100%;
     height: 100%;
     margin: auto;
   }
-  .transfer > .value {
+  .traffic > .value {
     margin-top: -18px;
     font-size: 18px;
     font-weight: 300;

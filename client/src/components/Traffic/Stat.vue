@@ -1,5 +1,5 @@
 <template>
-  <div class="comp-transfer-stat">
+  <div class="comp-traffic-stat">
     <div class="weui-panel__hd">
       流量详情
       <i class="fa fa-expand" v-if="fold && !showAll" @click="showAll = true"></i>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="less">
-.comp-transfer-stat {
+.comp-traffic-stat {
   .fa-expand,
   .fa-compress {
     float: right;

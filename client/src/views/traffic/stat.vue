@@ -1,9 +1,9 @@
 <template>
-  <div class="transfer">
-    <transfer-chart-stat
+  <div class="traffic">
+    <traffic-chart-stat
       :data="stat"
       :loading="isLoading">
-    </transfer-chart-stat>
+    </traffic-chart-stat>
 
     <div class="navbar">
       <router-link
@@ -14,24 +14,24 @@
     </div>
 
     <div class="weui-panel">
-      <transfer-stat
+      <traffic-stat
         :loading="isLoading"
         :stat="stat">
-      </transfer-stat>
+      </traffic-stat>
     </div>
   </div>
 </template>
 
 <script>
 import Api from '../../api'
-import TransferStat from '../../components/Transfer/Stat'
-import TransferChartStat from '../../components/Transfer/Chart/Stat'
+import TrafficStat from '../../components/Traffic/Stat'
+import TrafficChartStat from '../../components/Traffic/Chart/Stat'
 
 export default {
   props: ['profile'],
   components: {
-    TransferStat,
-    TransferChartStat
+    TrafficStat,
+    TrafficChartStat
   },
 
   data () {
@@ -51,7 +51,7 @@ export default {
     fetch () {
       this.isLoading = true
       let query = this.userId ? {userId: this.userId} : {}
-      Api('/api/transfer/stat', {query}).then(({data}) => {
+      Api('/api/traffic/stat', {query}).then(({data}) => {
         this.isLoading = false
         this.stat = data
       }).catch(() => {
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style lang="less">
-.transfer {
+.traffic {
   .detail {
     position: relative;
   }

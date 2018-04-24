@@ -1,4 +1,3 @@
-import offer from '../views/offer'
 import services from '../views/services/index'
 import servicesDetail from '../views/services/detail'
 import profile from '../views/profile'
@@ -9,7 +8,7 @@ import nodesEdit from '../views/nodes/edit'
 import users from '../views/users'
 import usersDetail from '../views/users/detail'
 import usersEdit from '../views/users/edit'
-import transferStat from '../views/transfer/stat'
+import trafficStat from '../views/traffic/stat'
 
 const NotFound = {
   template: '<p>Page Not Found</p>'
@@ -46,12 +45,6 @@ export default {
       name: 'profile-edit',
       component: profileEdit,
       meta: {title: '修改资料' + title}
-    },
-    {
-      path: '/offer',
-      name: 'offer',
-      component: offer,
-      meta: {title: '捐助' + title}
     },
     {
       path: '/nodes',
@@ -96,9 +89,9 @@ export default {
       meta: {title: '编辑用户' + title}
     },
     {
-      path: '/transfer/stat/:userId?',
-      name: 'transfer-stat',
-      component: transferStat,
+      path: '/traffic/stat/:userId?',
+      name: 'traffic-stat',
+      component: trafficStat,
       meta: {title: '流量详情' + title}
     },
     {
