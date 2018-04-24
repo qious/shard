@@ -1,6 +1,6 @@
 <template>
   <div class="comp-service-info">
-    <div class="weui-panel__hd">{{title}}</div>
+    <div class="weui-panel__hd">服务信息</div>
     <div class="weui-panel__bd">
       <div class="weui-media-box weui-media-box_small-appmsg">
         <div class="weui-cells">
@@ -24,7 +24,8 @@
           </div>
           <router-link
             class="weui-cell weui-cell_access weui-cell_link"
-            :to="{name: 'profile-edit'}">
+            :to="{name: 'profile-edit'}"
+            v-if="isprofile">
             <div class="weui-cell__bd">修改配置</div>
             <span class="weui-cell__ft"></span>
           </router-link>
@@ -36,6 +37,6 @@
 
 <script>
 export default {
-  props: ['title', 'user', 'loading']
+  props: ['isprofile', 'user', 'loading']
 }
 </script>

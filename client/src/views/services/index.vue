@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import Api from '../../api'
-import ServiceInfo from '../../components/Service/Info'
+import Api from '@/api'
+import ServiceInfo from '@/components/Service/Info'
 
 export default {
   props: ['profile'],

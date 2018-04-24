@@ -12,7 +12,8 @@ import _ from 'lodash'
 import ECharts from 'vue-echarts/components/ECharts.vue'
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/dataZoom'
-import Background from '../../Background'
+
+import Background from '@/components/Background'
 
 export default {
   props: ['data', 'loading'],
@@ -39,16 +40,12 @@ export default {
 
       let date = []
       let data = []
-      let dataShadow = []
-      for (let i = 0; i < this.data.length; i++) {
-        date.push(this.data[i].date)
-        data.push(_.round(this.data[i].flowTotal / 1073741824, 2))
+      for (let item of this.data) {
+        date.push(item.date)
+        data.push(_.round((item.flowUp + item.flowDown) / 1073741824, 2))
       }
 
-      let max = _.ceil(_.max(data))
-      for (let i = 0; i < this.data.length; i++) {
-        dataShadow.push(max)
-      }
+      let dataShadow = _.fill(Array(this.data.length), _.ceil(_.max(data)))
 
       this.options = {
         xAxis: [{

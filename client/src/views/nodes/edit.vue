@@ -53,8 +53,8 @@
           </div>
           <div class="weui-cell__bd">
             <select class="weui-select" v-model="isVisible">
-              <option value="Y">可见</option>
-              <option value="N">隐藏</option>
+              <option value="1">可见</option>
+              <option value="0">隐藏</option>
             </select>
           </div>
         </div>
@@ -110,19 +110,17 @@
 </template>
 
 <script>
-import Api from '../../api'
-import {formatBoolean} from '../../libs/utils'
+import Api from '@/api'
 
 export default {
   data () {
     return {
-      nodeId: null,
       name: null,
       avatar: null,
       description: null,
       server: null,
       method: null,
-      isVisible: 'Y',
+      isVisible: 1,
       sort: 1,
       isLoading: false,
       isSubmit: false,
@@ -131,17 +129,20 @@ export default {
   },
 
   computed: {
+    nodeId () {
+      return this.$route.params.nodeId
+    },
     isSortError () {
       return this.sort && (isNaN(this.sort) || this.sort <= 0)
     },
     isValid () {
-      return this.name && this.avatar && this.description && this.server &&
-             this.method && this.isVisible && this.sort && !this.isSortError
+      return this.name && this.avatar && this.description &&
+             this.server && this.method && this.isVisible !== null &&
+             this.sort && !this.isSortError
     }
   },
 
   created () {
-    this.nodeId = this.$route.params.nodeId
     if (this.nodeId) {
       this.fetch()
     }
@@ -150,15 +151,14 @@ export default {
   methods: {
     fetch () {
       this.isLoading = true
-      let nodeId = this.nodeId
-      Api('/api/nodes/detail', {query: {nodeId}}).then(({data}) => {
+      Api(`/api/nodes/${this.nodeId}`).then(({data}) => {
         this.isLoading = false
         this.name = data.name
         this.avatar = data.avatar
         this.description = data.description
         this.server = data.server
         this.method = data.method
-        this.isVisible = formatBoolean(data.isVisible, true)
+        this.isVisible = Number(data.isVisible)
         this.sort = data.sort
       }).catch(() => {
         this.isLoading = false
@@ -171,24 +171,32 @@ export default {
       }
       this.isSubmit = true
 
+      let url = '/api/nodes'
       let method = 'POST'
-      let body = {
-        name: this.name,
-        avatar: this.avatar,
-        description: this.description,
-        server: this.server,
-        method: this.method,
-        isVisible: formatBoolean(this.isVisible),
-        sort: this.sort
-      }
       if (this.nodeId) {
+        url = `/api/nodes/${this.nodeId}`
         method = 'PUT'
-        body.nodeId = this.nodeId
       }
 
-      Api('/api/nodes', {method, body}).then(({data}) => {
+      Api(url, {
+        method,
+        body: {
+          name: this.name,
+          avatar: this.avatar,
+          description: this.description,
+          server: this.server,
+          method: this.method,
+          isVisible: Boolean(Number(this.isVisible)),
+          sort: Number(this.sort)
+        }
+      }).then(({ data }) => {
         this.isSubmit = false
-        this.$router.push({name: 'node-detail', params: {nodeId: data.nodeId}})
+        this.$router.push({
+          name: 'node-detail',
+          params: {
+            nodeId: data.nodeId
+          }
+        })
       }).catch(() => {
         this.isSubmit = false
       })
@@ -202,8 +210,9 @@ export default {
       }
 
       this.isRemove = true
-      let nodeId = this.nodeId
-      Api('/api/nodes', {method: 'DELETE', query: {nodeId}}).then(() => {
+      Api(`/api/nodes/${this.nodeId}`, {
+        method: 'DELETE'
+      }).then(() => {
         this.isRemove = false
         this.$router.push({name: 'nodes'})
       }).catch(() => {

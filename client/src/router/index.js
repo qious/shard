@@ -1,14 +1,14 @@
-import services from '../views/services/index'
-import servicesDetail from '../views/services/detail'
-import profile from '../views/profile'
-import profileEdit from '../views/profile/edit'
-import nodes from '../views/nodes'
-import nodesDetail from '../views/nodes/detail'
-import nodesEdit from '../views/nodes/edit'
-import users from '../views/users'
-import usersDetail from '../views/users/detail'
-import usersEdit from '../views/users/edit'
-import trafficStat from '../views/traffic/stat'
+import services from '@/views/services/index'
+import servicesDetail from '@/views/services/detail'
+import profile from '@/views/profile'
+import profileEdit from '@/views/profile/edit'
+import nodes from '@/views/nodes'
+import nodesDetail from '@/views/nodes/detail'
+import nodesEdit from '@/views/nodes/edit'
+import users from '@/views/users'
+import usersDetail from '@/views/users/detail'
+import usersEdit from '@/views/users/edit'
+import trafficStat from '@/views/traffic/stat'
 
 const NotFound = {
   template: '<p>Page Not Found</p>'
@@ -89,7 +89,7 @@ export default {
       meta: {title: '编辑用户' + title}
     },
     {
-      path: '/traffic/stat/:userId?',
+      path: '/traffic/stat',
       name: 'traffic-stat',
       component: trafficStat,
       meta: {title: '流量详情' + title}

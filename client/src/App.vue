@@ -25,7 +25,7 @@
       </router-link>
       <router-link
         class="weui-tabbar__item"
-        :class="tabberClass[3]"
+        :class="tabberClass[2]"
         :to="{name: 'users'}"
         v-if="profile.isAdmin">
         <i class="fa fa-users weui-tabbar__icon"></i>
@@ -33,7 +33,7 @@
       </router-link>
       <router-link
         class="weui-tabbar__item"
-        :class="tabberClass[4]"
+        :class="tabberClass[3]"
         :to="{name: 'nodes'}"
         v-if="profile.isAdmin">
         <i class="fa fa-sitemap weui-tabbar__icon"></i>
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Api from './api'
+import Api from '@/api'
 
 export default {
   data () {

@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import Api from '../../api'
+import Api from '@/api'
 
 export default {
   data () {
@@ -95,7 +95,7 @@ export default {
     .hidden {
       float: right;
       color: #FB7886;
-    } 
+    }
   }
 }
 </style>

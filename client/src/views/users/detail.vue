@@ -18,127 +18,58 @@
         :isprofile="false">
       </traffic-info>
 
-      <div class="weui-panel__hd">服务信息</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_small-appmsg">
-          <div class="weui-cells">
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>SS 端口</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.port}}</span>
-              </div>
-            </div>
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>SS 密码</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.password}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <service-info
+        :user="user"
+        :loading="isLoading"
+        :isprofile="false">
+      </service-info>
 
-      <div class="weui-panel__hd">个人信息</div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_small-appmsg">
-          <div class="weui-cells">
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>用户账号</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.userId}}</span>
-              </div>
-            </div>
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>用户姓名</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.name}}</span>
-              </div>
-            </div>
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>用户状态</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.isLocked? '锁定' : '正常'}}</span>
-              </div>
-            </div>
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>用户角色</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.isAdmin? '管理员' : '用户'}}</span>
-              </div>
-            </div>
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>最后在线</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.activeAt}}</span>
-              </div>
-            </div>
-            <div class="weui-cell">
-              <div class="weui-cell__bd">
-                <p>加入时间</p>
-              </div>
-              <div class="weui-cell__ft">
-                <i class="weui-loading" v-if="isLoading"></i>
-                <span v-else>{{user.registAt}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <user-info
+        :user="user"
+        :loading="isLoading">
+      </user-info>
     </div>
+
   </div>
 </template>
 
 <script>
-import Api from '../../api'
-import TrafficChartSum from '../../components/Traffic/Chart/Sum'
-import TrafficInfo from '../../components/Traffic/Info'
+import Api from '@/api'
+import TrafficChartSum from '@/components/Traffic/Chart/Sum'
+import TrafficInfo from '@/components/Traffic/Info'
+import ServiceInfo from '@/components/Service/Info'
+import UserInfo from '@/components/User/Info'
 
 export default {
   props: ['profile'],
   components: {
     TrafficChartSum,
-    TrafficInfo
+    TrafficInfo,
+    ServiceInfo,
+    UserInfo
   },
 
   data () {
     return {
       user: {},
-      userId: null,
       isLoading: false
     }
   },
 
+  computed: {
+    userId () {
+      return this.$route.params.userId
+    }
+  },
+
   created () {
-    this.userId = this.$route.params.userId
     this.fetch()
   },
 
   methods: {
     fetch () {
       this.isLoading = true
-      let userId = this.userId
-      Api('/api/users/detail', {query: {userId}}).then(({data}) => {
+      Api(`/api/users/${this.userId}`).then(({data}) => {
         this.isLoading = false
         this.user = data
       }).catch(() => {

@@ -19,7 +19,9 @@
             <div class="weui-cell__bd">
               {{item.date.slice(0, 2) + '月' + item.date.slice(3, 5) + '日'}}
             </div>
-            <div class="weui-cell__ft">{{item.flowTotalV}}</div>
+            <div class="weui-cell__ft">
+              {{filesize(item.flowUp + item.flowDown)}}
+            </div>
           </div>
         </div>
       </div>
@@ -29,6 +31,7 @@
 
 <script>
 import _ from 'lodash'
+import filesize from 'filesize'
 
 export default {
   props: ['loading', 'stat', 'fold'],
@@ -51,6 +54,10 @@ export default {
       }
       return _.slice(data, 0, 5)
     }
+  },
+
+  methods: {
+    filesize
   }
 }
 </script>

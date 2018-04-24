@@ -4,17 +4,19 @@
     <div class="traffic">
       <e-charts :options="options"></e-charts>
       <div class="value">
-        {{(user.trafficUsedV || '0 B') + ' / ' + (user.trafficEnableV || '0 B')}}
+        {{filesize(trafficUsed || 0) + ' / ' + filesize(trafficLimit || 0)}}
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
+import filesize from 'filesize'
 import ECharts from 'vue-echarts/components/ECharts.vue'
 import 'echarts-liquidfill'
-import Background from '../../Background'
-import {getTrafficPercent} from '../../../libs/utils'
+
+import Background from '@/components/Background'
 
 export default {
   props: ['user'],
@@ -47,18 +49,41 @@ export default {
     }
   },
 
+  computed: {
+    trafficLimit () {
+      if (!this.user) {
+        return 0
+      }
+      return this.user.trafficLimit || 0
+    },
+
+    trafficUsed () {
+      if (!this.user) {
+        return 0
+      }
+      return (this.user.flowUp + this.user.flowDown) || 0
+    },
+
+    trafficPercent () {
+      let unused = this.trafficLimit - this.trafficUsed
+      if (unused < 0 || this.trafficLimit <= 0) {
+        return 0
+      }
+      return _.round(unused / this.trafficLimit, 4)
+    }
+  },
+
   created () {
-    if (this.user.trafficEnable || this.user.trafficUsed) {
+    if (this.user.trafficLimit) {
       this.updateChart()
     }
   },
 
   methods: {
+    filesize,
+
     updateChart () {
-      let trafficEnable = this.user.trafficEnable
-      let trafficUsed = this.user.trafficUsed
-      let trafficPercent = getTrafficPercent(trafficEnable, trafficUsed)
-      this.options.series.data = [trafficPercent]
+      this.options.series.data = [this.trafficPercent]
     }
   },
 

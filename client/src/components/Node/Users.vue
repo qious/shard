@@ -16,8 +16,8 @@
         </div>
         <div class="weui-cells" v-else>
           <div class="weui-cell" v-for="user in filtered" :key="user.userId">
-            <div class="weui-cell__bd">{{user.name}}</div>
-            <div class="weui-cell__ft">{{user.activeAt}}</div>
+            <div class="weui-cell__bd">{{user.nickname}}</div>
+            <div class="weui-cell__ft">{{fromNow(user.activedAt)}}</div>
           </div>
         </div>
       </div>
@@ -27,6 +27,7 @@
 
 <script>
 import _ from 'lodash'
+import { fromNow } from '@/libs/utils'
 
 export default {
   props: ['loading', 'users'],
@@ -41,6 +42,10 @@ export default {
     filtered () {
       return _.slice(this.users, 0, this.showAll ? this.users.length : 5)
     }
+  },
+
+  methods: {
+    fromNow
   }
 }
 </script>

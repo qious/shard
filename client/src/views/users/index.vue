@@ -13,15 +13,15 @@
           class="weui-media-box weui-media-box_appmsg" v-for="item in items" :key="item.userId">
           <div class="weui-media-box__bd">
             <h4 class="weui-media-box__title">
-              <span>{{item.name}}</span>
-              <span class="value">{{item.trafficUsedV}}</span>
+              <span>{{item.nickname}}</span>
+              <span class="value">{{filesize(item.flowUp + item.flowDown)}}</span>
             </h4>
             <ul class="weui-media-box__info">
               <li class="weui-media-box__info__meta">
-                {{'活跃于 '+ item.activeAt}}
+                {{'活跃于 '+ fromNow(item.activedAt)}}
               </li>
               <li class="weui-media-box__info__meta">
-                {{'已用，共 ' + item.trafficEnableV}}
+                {{'已用，共 ' + filesize(item.trafficLimit)}}
               </li>
             </ul>
           </div>
@@ -32,8 +32,9 @@
 </template>
 
 <script>
-import Api from '../../api'
-import {getTrafficPercent} from '../../libs/utils'
+import Api from '@/api'
+import filesize from 'filesize'
+import { fromNow } from '@/libs/utils'
 
 export default {
   data () {
@@ -50,17 +51,17 @@ export default {
   methods: {
     fetch () {
       this.isLoading = true
-      Api('/api/users').then((res) => {
+      Api('/api/users').then(({ data }) => {
         this.isLoading = false
-        for (let item of res.data) {
-          let trafficPercent = getTrafficPercent(item.trafficEnable, item.trafficUsed) * 100
-          item.trafficPercent = trafficPercent.toFixed(2)
-        }
-        this.items = res.data
+        this.items = data
       }).catch(() => {
         this.isLoading = false
       })
-    }
+    },
+
+    filesize,
+
+    fromNow
   }
 }
 </script>

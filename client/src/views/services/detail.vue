@@ -124,7 +124,7 @@
 </template>
 
 <script>
-import Api from '../../api'
+import Api from '@/api'
 
 export default {
   data () {

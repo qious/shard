@@ -8,7 +8,7 @@
     <div class="navbar">
       <router-link
         class="back"
-        :to="{name: userId? 'user-detail' : 'profile'}">
+        :to="backLink">
         <i class="fa fa-angle-left fa-lg"></i>
       </router-link>
     </div>
@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import Api from '../../api'
-import TrafficStat from '../../components/Traffic/Stat'
-import TrafficChartStat from '../../components/Traffic/Chart/Stat'
+import Api from '@/api'
+import TrafficStat from '@/components/Traffic/Stat'
+import TrafficChartStat from '@/components/Traffic/Chart/Stat'
 
 export default {
   props: ['profile'],
@@ -36,22 +36,45 @@ export default {
 
   data () {
     return {
-      userId: null,
       stat: [],
       isLoading: false
     }
   },
 
+  computed: {
+    query () {
+      return this.$route.query
+    },
+
+    userId () {
+      return this.query && this.query.userId
+    },
+
+    backLink () {
+      if (this.userId) {
+        return {
+          name: 'user-detail',
+          params: {
+            userId: this.userId
+          }
+        }
+      }
+      return {
+        name: 'profile'
+      }
+    }
+  },
+
   created () {
-    this.userId = this.$route.params.userId
     this.fetch()
   },
 
   methods: {
     fetch () {
       this.isLoading = true
-      let query = this.userId ? {userId: this.userId} : {}
-      Api('/api/traffic/stat', {query}).then(({data}) => {
+      Api('/api/traffic/stat', {
+        query: this.query
+      }).then(({data}) => {
         this.isLoading = false
         this.stat = data
       }).catch(() => {
