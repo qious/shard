@@ -151,7 +151,7 @@ export default {
   methods: {
     fetch () {
       this.isLoading = true
-      Api(`/api/nodes/${this.nodeId}`).then(({data}) => {
+      Api(`/api/nodes/${this.nodeId}`).then(({ data }) => {
         this.isLoading = false
         this.name = data.name
         this.avatar = data.avatar

@@ -142,7 +142,7 @@ export default {
   methods: {
     fetchNode () {
       this.isLoading.node = true
-      Api(`/api/nodes/${this.nodeId}`).then(({data}) => {
+      Api(`/api/nodes/${this.nodeId}`).then(({ data }) => {
         this.isLoading.node = false
         this.node = data
       }).catch(() => {
@@ -156,7 +156,7 @@ export default {
         query: {
           nodeId: this.nodeId
         }
-      }).then(({data}) => {
+      }).then(({ data }) => {
         this.isLoading.users = false
         this.users = data
       }).catch(() => {
@@ -170,7 +170,7 @@ export default {
         query: {
           nodeId: this.nodeId
         }
-      }).then(({data}) => {
+      }).then(({ data }) => {
         this.isLoading.stat = false
         this.stat = data
       }).catch(() => {

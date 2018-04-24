@@ -9,7 +9,7 @@ let getLoginUrl = function (config) {
     protocol: 'https',
     host: 'open.weixin.qq.com',
     pathname: '/connect/oauth2/authorize',
-    query: Object.assign(config, {state: location.href}),
+    query: Object.assign(config, { state: location.href }),
     hash: '#wechat_redirect'
   })
 }
@@ -51,7 +51,7 @@ let api = async function (uri, params) {
   }
 
   // 处理 GET 参数
-  uri = uri + url.format({query: params.query})
+  uri = uri + url.format({ query: params.query })
   params.query = undefined
 
   let status, data
@@ -64,13 +64,13 @@ let api = async function (uri, params) {
     }
   } catch (err) {
     if (!_.isObject(data)) {
-      data = {msg: err.message}
+      data = { msg: err.message }
     }
     handleHttpError(status, data)
     throw err
   }
 
-  return {status, data}
+  return { status, data }
 }
 
 export default api

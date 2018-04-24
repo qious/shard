@@ -15,6 +15,8 @@ import 'echarts/lib/component/dataZoom'
 
 import Background from '@/components/Background'
 
+const TRAFFIC_MULTIPLE = 1073741824
+
 export default {
   props: ['data', 'loading'],
   components: {
@@ -42,7 +44,7 @@ export default {
       let data = []
       for (let item of this.data) {
         date.push(item.date)
-        data.push(_.round((item.flowUp + item.flowDown) / 1073741824, 2))
+        data.push(_.round((item.flowUp + item.flowDown) / TRAFFIC_MULTIPLE, 2))
       }
 
       let dataShadow = _.fill(Array(this.data.length), _.ceil(_.max(data)))

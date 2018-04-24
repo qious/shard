@@ -62,7 +62,7 @@ export default {
 
   methods: {
     fetchProfile () {
-      Api('/api/profile').then(({data}) => {
+      Api('/api/profile').then(({ data }) => {
         this.profile = data
       })
     },

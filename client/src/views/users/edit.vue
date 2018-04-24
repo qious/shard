@@ -153,7 +153,7 @@ export default {
   methods: {
     fetch () {
       this.isLoading = true
-      Api(`/api/users/${this.userId}`).then(({data}) => {
+      Api(`/api/users/${this.userId}`).then(({ data }) => {
         this.isLoading = false
         this.username = data.username
         this.nickname = data.nickname

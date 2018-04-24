@@ -61,7 +61,7 @@ export default {
   methods: {
     fetch () {
       this.loading = true
-      Api('/api/services').then(({data}) => {
+      Api('/api/services').then(({ data }) => {
         this.loading = false
         this.items = data
       }).catch(() => {
