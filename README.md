@@ -17,9 +17,8 @@
 ```bash
 cd /path/to/ss-panel/server/
 npm install
-cp config/default.js config/local.js
-cp pm2.sample.json pm2.json
-npm run start
+cp config/default.js config/local.js # 修改配置文件
+npm run pm2.start
 ```
 
 ### **协作开发**
