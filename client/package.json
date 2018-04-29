@@ -1,6 +1,6 @@
 {
-  "name": "ss-panel-front",
-  "version": "0.3.4",
+  "name": "ss-panel-client",
+  "version": "0.4.0",
   "description": "shadowsocks 管理面板 前端",
   "author": "qiujun",
   "license": "MIT",
@@ -15,9 +15,10 @@
   },
   "dependencies": {
     "echarts-liquidfill": "^1.0.4",
+    "filesize": "^3.6.1",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.4",
-    "path": "^0.12.7",
+    "moment": "^2.22.1",
     "url": "^0.11.0",
     "vue": "^2.2.2",
     "vue-clipboards": "^1.1.0",

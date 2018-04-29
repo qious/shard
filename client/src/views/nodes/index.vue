@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import Api from '../../api'
+import Api from '@/api'
 
 export default {
   data () {
@@ -67,7 +67,7 @@ export default {
   methods: {
     fetch () {
       this.isLoading = true
-      Api('/api/nodes').then(({data}) => {
+      Api('/api/nodes').then(({ data }) => {
         this.isLoading = false
         this.items = data
       }).catch(() => {
@@ -95,7 +95,7 @@ export default {
     .hidden {
       float: right;
       color: #FB7886;
-    } 
+    }
   }
 }
 </style>

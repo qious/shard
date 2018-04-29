@@ -1,9 +1,9 @@
 <template>
   <div class="nodes-detail">
-    <transfer-chart-stat
+    <traffic-chart-stat
       :data="stat"
       :loading="isLoading.stat">
-    </transfer-chart-stat>
+    </traffic-chart-stat>
 
     <div class="navbar">
       <router-link class="back" :to="{name: 'nodes'}">
@@ -70,7 +70,7 @@
               </div>
               <div class="weui-cell__ft">
                 <i class="weui-loading" v-if="isLoading.node"></i>
-                <span v-else>{{node.updatedAt}}</span>
+                <span v-else>{{fromNow(node.updatedAt)}}</span>
               </div>
             </div>
             <div class="weui-cell">
@@ -79,7 +79,7 @@
               </div>
               <div class="weui-cell__ft">
                 <i class="weui-loading" v-if="isLoading.node"></i>
-                <span v-else>{{node.createdAt}}</span>
+                <span v-else>{{fromNow(node.createdAt)}}</span>
               </div>
             </div>
           </div>
@@ -90,32 +90,32 @@
         :loading="isLoading.users"
         :users="users">
       </node-users>
-      <transfer-stat
+      <traffic-stat
         :loading="isLoading.stat"
         :stat="stat"
         :fold="true">
-      </transfer-stat>
+      </traffic-stat>
     </div>
   </div>
 </template>
 
 <script>
-import Api from '../../api'
-import NodeUsers from '../../components/Node/Users'
-import TransferStat from '../../components/Transfer/Stat'
-import TransferChartStat from '../../components/Transfer/Chart/Stat'
+import Api from '@/api'
+import NodeUsers from '@/components/Node/Users'
+import TrafficStat from '@/components/Traffic/Stat'
+import TrafficChartStat from '@/components/Traffic/Chart/Stat'
+import { fromNow } from '@/libs/utils'
 
 export default {
   props: ['profile'],
   components: {
     NodeUsers,
-    TransferStat,
-    TransferChartStat
+    TrafficStat,
+    TrafficChartStat
   },
 
   data () {
     return {
-      nodeId: null,
       node: {},
       users: [],
       stat: [],
@@ -127,18 +127,22 @@ export default {
     }
   },
 
+  computed: {
+    nodeId () {
+      return this.$route.params.nodeId
+    }
+  },
+
   created () {
-    this.nodeId = this.$route.params.nodeId
     this.fetchNode()
-    this.fetchStat()
     this.fetchUsers()
+    this.fetchStat()
   },
 
   methods: {
     fetchNode () {
       this.isLoading.node = true
-      let nodeId = this.nodeId
-      Api('/api/nodes/detail', {query: {nodeId}}).then(({data}) => {
+      Api(`/api/nodes/${this.nodeId}`).then(({ data }) => {
         this.isLoading.node = false
         this.node = data
       }).catch(() => {
@@ -146,10 +150,27 @@ export default {
       })
     },
 
+    fetchUsers () {
+      this.isLoading.users = true
+      Api('/api/traffic/users', {
+        query: {
+          nodeId: this.nodeId
+        }
+      }).then(({ data }) => {
+        this.isLoading.users = false
+        this.users = data
+      }).catch(() => {
+        this.isLoading.users = false
+      })
+    },
+
     fetchStat () {
       this.isLoading.stat = true
-      let nodeId = this.nodeId
-      Api('/api/transfer/stat', {query: {nodeId}}).then(({data}) => {
+      Api('/api/traffic/stat', {
+        query: {
+          nodeId: this.nodeId
+        }
+      }).then(({ data }) => {
         this.isLoading.stat = false
         this.stat = data
       }).catch(() => {
@@ -157,16 +178,7 @@ export default {
       })
     },
 
-    fetchUsers () {
-      this.isLoading.users = true
-      let nodeId = this.nodeId
-      Api('/api/nodes/users', {query: {nodeId}}).then(({data}) => {
-        this.isLoading.users = false
-        this.users = data
-      }).catch(() => {
-        this.isLoading.users = false
-      })
-    }
+    fromNow
   }
 }
 </script>

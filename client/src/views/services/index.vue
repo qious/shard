@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import Api from '../../api'
-import ServiceInfo from '../../components/Service/Info'
+import Api from '@/api'
+import ServiceInfo from '@/components/Service/Info'
 
 export default {
   props: ['profile'],
@@ -61,7 +61,7 @@ export default {
   methods: {
     fetch () {
       this.loading = true
-      Api('/api/services').then(({data}) => {
+      Api('/api/services').then(({ data }) => {
         this.loading = false
         this.items = data
       }).catch(() => {

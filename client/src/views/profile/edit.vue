@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import Api from '../../api'
+import Api from '@/api'
 
 export default {
   props: ['profile'],
@@ -77,7 +77,7 @@ export default {
       return !this.profile.port && !this.profile.password
     },
     isPortError () {
-      return this.port && (isNaN(this.port) || this.port > 65535 || this.port <= 1024)
+      return this.port && (isNaN(this.port) || this.port > 65535 || this.port <= 0)
     },
     isPasswordError () {
       return this.password && (this.password.length < 6 || this.password.length > 12)

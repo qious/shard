@@ -1,0 +1,48 @@
+get:
+  tags: [ user ]
+  summary: 获取用户列表
+  operationId: users.list
+  security:
+    - oauth: [ admin ]
+  responses:
+    200:
+      description: 用户列表
+      schema:
+        type: array
+        items:
+          $ref: "#/models/user"
+    default:
+      $ref: "#/responses/failure"
+
+post:
+  tags: [ user ]
+  summary: 新增用户
+  operationId: users.create
+  security:
+    - oauth: [ admin ]
+  parameters:
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: object
+        required:
+          - username
+          - nickname
+        properties:
+          username:
+            type: string
+            example: "zhang"
+            description: 用户姓名
+          nickname:
+            type: string
+            example: "张三"
+            description: 用户姓名
+  responses:
+    200:
+      description: 用户信息
+      schema:
+        $ref: "#/models/user"
+    default:
+      $ref: "#/responses/failure"
+

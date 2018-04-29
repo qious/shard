@@ -26,14 +26,6 @@
       <router-link
         class="weui-tabbar__item"
         :class="tabberClass[2]"
-        :to="{name: 'offer'}"
-        v-if="!profile.isAdmin">
-        <i class="fa fa-heart weui-tabbar__icon"></i>
-        <p class="weui-tabbar__label">捐助</p>
-      </router-link>
-      <router-link
-        class="weui-tabbar__item"
-        :class="tabberClass[3]"
         :to="{name: 'users'}"
         v-if="profile.isAdmin">
         <i class="fa fa-users weui-tabbar__icon"></i>
@@ -41,7 +33,7 @@
       </router-link>
       <router-link
         class="weui-tabbar__item"
-        :class="tabberClass[4]"
+        :class="tabberClass[3]"
         :to="{name: 'nodes'}"
         v-if="profile.isAdmin">
         <i class="fa fa-sitemap weui-tabbar__icon"></i>
@@ -52,7 +44,7 @@
 </template>
 
 <script>
-import Api from './api'
+import Api from '@/api'
 
 export default {
   data () {
@@ -70,14 +62,14 @@ export default {
 
   methods: {
     fetchProfile () {
-      Api('/api/profile').then(({data}) => {
+      Api('/api/profile').then(({ data }) => {
         this.profile = data
       })
     },
 
     updateTabber () {
       let now = this.$route.name
-      let tabbers = ['services', 'profile', 'offer', 'users', 'nodes']
+      let tabbers = ['services', 'profile', 'users', 'nodes']
 
       if (tabbers.indexOf(now) === -1) {
         this.tabberShow = false

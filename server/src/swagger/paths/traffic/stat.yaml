@@ -1,0 +1,36 @@
+get:
+  tags: [ traffic ]
+  summary: 获取流量统计
+  operationId: traffic.stat
+  security:
+    - oauth: []
+  parameters:
+    - name: nodeId
+      in: query
+      type: integer
+      required: false
+      description: 节点 ID
+    - name: userId
+      in: query
+      type: string
+      required: false
+      description: 用户 ID
+  responses:
+    200:
+      description: 节点详情
+      schema:
+        type: array
+        items:
+          type: object
+          properties:
+            date:
+              type: string
+              example: "01-01"
+            flowUp:
+              type: integer
+              example: 0
+            flowDown:
+              type: integer
+              example: 0
+    default:
+      $ref: "#/responses/failure"

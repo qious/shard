@@ -1,0 +1,44 @@
+post:
+  tags: [ node ]
+  summary: 上传用户流量
+  operationId: nodes.traffic
+  security:
+    - oauth: [ admin ]
+    - nodeToken: []
+  parameters:
+    - name: nodeId
+      in: path
+      type: integer
+      required: true
+      description: 节点 ID
+    - in: body
+      name: body
+      required: true
+      schema:
+        type: array
+        items:
+          type: object
+          required:
+            - userId
+            - flowUp
+            - flowDown
+          properties:
+            userId:
+              type: integer
+              example: 1
+              description: 用户ID
+            flowUp:
+              type: integer
+              example: 0
+              minimum: 0
+              description: 上传流量
+            flowDown:
+              type: integer
+              example: 0
+              minimum: 0
+              description: 下载流量
+  responses:
+    200:
+      $ref: "#/responses/success"
+    default:
+      $ref: "#/responses/failure"

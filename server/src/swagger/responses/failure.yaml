@@ -1,0 +1,26 @@
+description: 错误响应
+schema:
+  type: object
+  title: ErrorResponse
+  required:
+    - msg
+    - type
+    - status
+    - extra
+  properties:
+    msg:
+      type: string
+      description: 错误详情
+      example: "Something Error"
+    type:
+      type: string
+      description: 错误类型
+      example: "BadRequest"
+    status:
+      type: integer
+      description: 错误码
+      example: 400
+    extra:
+      type: object
+      description: 额外参数
+

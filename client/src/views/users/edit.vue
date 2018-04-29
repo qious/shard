@@ -29,14 +29,14 @@
             <i class="weui-icon-warn"></i>
           </div>
         </div>
-        <div class="weui-cell" :class="{'weui-cell_warn': isTransferError}">
+        <div class="weui-cell" :class="{'weui-cell_warn': isTrafficError}">
           <div class="weui-cell__hd">
             <label class="weui-label">流量上限</label>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" type="number" placeholder="请输入流量上限" v-model="transferEnable">
+            <input class="weui-input" type="number" placeholder="请输入流量上限" v-model="trafficLimit">
           </div>
-          <div class="weui-cell__ft" v-if="isTransferError">
+          <div class="weui-cell__ft" v-if="isTrafficError">
             <i class="weui-icon-warn"></i>
           </div>
           <div class="weui-cell__ft" v-else>GB</div>
@@ -47,10 +47,18 @@
       <div class="weui-cells weui-cells_form weui-panel__bd">
         <div class="weui-cell">
           <div class="weui-cell__hd">
-            <label class="weui-label">用户姓名</label>
+            <label class="weui-label">用户名</label>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" type="text" placeholder="请输入姓名" v-model="name">
+            <input class="weui-input" type="text" placeholder="请输入用户名" v-model="username">
+          </div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__hd">
+            <label class="weui-label">用户昵称</label>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" type="text" placeholder="请输入昵称" v-model="nickname">
           </div>
         </div>
         <div class="weui-cell weui-cell_select weui-cell_select-after">
@@ -59,8 +67,8 @@
           </div>
           <div class="weui-cell__bd">
             <select class="weui-select" v-model="isAdmin">
-              <option value="N">用户</option>
-              <option value="Y">管理员</option>
+              <option value="0">用户</option>
+              <option value="1">管理员</option>
             </select>
           </div>
         </div>
@@ -70,8 +78,8 @@
           </div>
           <div class="weui-cell__bd">
             <select class="weui-select" v-model="isLocked">
-              <option value="N">正常</option>
-              <option value="Y">锁定</option>
+              <option value="0">正常</option>
+              <option value="1">锁定</option>
             </select>
           </div>
         </div>
@@ -97,17 +105,18 @@
 </template>
 
 <script>
-import Api from '../../api'
-import {formatTransfer, formatBoolean} from '../../libs/utils'
+import Api from '@/api'
+
+const TRAFFIC_MULTIPLE = 1073741824
 
 export default {
   data () {
     return {
-      userId: null,
+      username: null,
+      nickname: null,
       port: null,
       password: null,
-      transferEnable: null,
-      name: null,
+      trafficLimit: null,
       isAdmin: null,
       isLocked: null,
       isLoading: false,
@@ -116,43 +125,43 @@ export default {
   },
 
   computed: {
-    isLoading () {
-      return !this.profile.port && !this.profile.password
+    userId () {
+      return this.$route.params.userId
     },
     isPortError () {
-      return this.port && (isNaN(this.port) || this.port > 65535 || this.port <= 1024)
+      return this.port && (isNaN(this.port) || this.port > 65535 || this.port <= 0)
     },
     isPasswordError () {
       return this.password && (this.password.length < 6 || this.password.length > 12)
     },
-    isTransferError () {
-      return this.transferEnable && isNaN(this.transferEnable)
+    isTrafficError () {
+      return this.trafficLimit && isNaN(this.trafficLimit)
     },
     isValid () {
-      return this.port && !this.isPortError &&
+      return this.username && this.nickname &&
+             this.port && !this.isPortError &&
              this.password && !this.isPasswordError &&
-             this.transferEnable && !this.isTransferError &&
-             this.name && this.isAdmin && this.isLocked
+             this.trafficLimit && !this.isTrafficError &&
+             this.isAdmin !== null && this.isLocked !== null
     }
   },
 
   created () {
-    this.userId = this.$route.params.userId
     this.fetch()
   },
 
   methods: {
     fetch () {
       this.isLoading = true
-      let userId = this.userId
-      Api('/api/users/detail', {query: {userId}}).then(({data}) => {
+      Api(`/api/users/${this.userId}`).then(({ data }) => {
         this.isLoading = false
+        this.username = data.username
+        this.nickname = data.nickname
         this.port = data.port
         this.password = data.password
-        this.transferEnable = formatTransfer(data.transferEnable, true)
-        this.name = data.name
-        this.isAdmin = formatBoolean(data.isAdmin, true)
-        this.isLocked = formatBoolean(data.isLocked, true)
+        this.trafficLimit = data.trafficLimit / TRAFFIC_MULTIPLE
+        this.isAdmin = Number(data.isAdmin)
+        this.isLocked = Number(data.isLocked)
       }).catch(() => {
         this.isLoading = false
       })
@@ -162,18 +171,20 @@ export default {
       if (!this.isValid || this.isSubmit) {
         return false
       }
-      this.isSubmit = true
 
-      let body = {
-        userId: this.userId,
-        port: Number(this.port),
-        password: this.password,
-        transferEnable: formatTransfer(this.transferEnable),
-        name: this.name,
-        isAdmin: formatBoolean(this.isAdmin),
-        isLocked: formatBoolean(this.isLocked)
-      }
-      Api('/api/users', {method: 'PUT', body}).then(() => {
+      this.isSubmit = true
+      Api(`/api/users/${this.userId}`, {
+        method: 'PUT',
+        body: {
+          username: this.username,
+          nickname: this.nickname,
+          port: Number(this.port),
+          password: this.password,
+          trafficLimit: this.trafficLimit * TRAFFIC_MULTIPLE,
+          isAdmin: Boolean(Number(this.isAdmin)),
+          isLocked: Boolean(Number(this.isLocked))
+        }
+      }).then(() => {
         this.isSubmit = false
         this.$router.push({name: 'user-detail'})
       }).catch(() => {

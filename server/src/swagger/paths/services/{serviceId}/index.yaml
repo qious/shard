@@ -1,0 +1,19 @@
+get:
+  tags: [ service ]
+  summary: 获取服务详情
+  operationId: services.detail
+  security:
+    - oauth: []
+  parameters:
+    - name: serviceId
+      in: path
+      type: integer
+      required: true
+      description:  服务 ID
+  responses:
+    200:
+      description: 服务详情
+      schema:
+        $ref: "#/models/service"
+    default:
+      $ref: "#/responses/failure"
