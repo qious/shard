@@ -6,7 +6,6 @@
 *.out
 
 node_modules
-package-lock.json
 
 server/pm2.json
 server/.nyc_output
