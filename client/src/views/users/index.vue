@@ -18,7 +18,7 @@
             </h4>
             <ul class="weui-media-box__info">
               <li class="weui-media-box__info__meta">
-                {{'活跃于 '+ fromNow(item.activedAt)}}
+                {{item.activedAt ? ('活跃于 '+ fromNow(item.activedAt)) : '从未使用'}}
               </li>
               <li class="weui-media-box__info__meta">
                 {{'已用，共 ' + filesize(item.trafficLimit)}}

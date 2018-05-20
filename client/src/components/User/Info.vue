@@ -46,7 +46,7 @@
             </div>
             <div class="weui-cell__ft">
               <i class="weui-loading" v-if="loading"></i>
-              <span v-else>{{fromNow(user.activedAt)}}</span>
+              <span v-else>{{user.activedAt ? fromNow(user.activedAt) : '从未使用'}}</span>
             </div>
           </div>
           <div class="weui-cell">

@@ -17,7 +17,7 @@
         <div class="weui-cells" v-else>
           <div class="weui-cell" v-for="user in filtered" :key="user.userId">
             <div class="weui-cell__bd">{{user.nickname}}</div>
-            <div class="weui-cell__ft">{{fromNow(user.activedAt)}}</div>
+            <div class="weui-cell__ft">{{user.activedAt ? fromNow(user.activedAt) : '从未使用'}}</div>
           </div>
         </div>
       </div>
