@@ -1,13 +1,14 @@
 import services from '@/views/services/index'
-import servicesDetail from '@/views/services/detail'
+import serviceDetail from '@/views/services/detail'
 import profile from '@/views/profile'
 import profileEdit from '@/views/profile/edit'
 import nodes from '@/views/nodes'
-import nodesDetail from '@/views/nodes/detail'
-import nodesEdit from '@/views/nodes/edit'
+import nodeDetail from '@/views/nodes/detail'
+import nodeEdit from '@/views/nodes/edit'
 import users from '@/views/users'
-import usersDetail from '@/views/users/detail'
-import usersEdit from '@/views/users/edit'
+import userAdd from '@/views/users/add'
+import userDetail from '@/views/users/detail'
+import userEdit from '@/views/users/edit'
 import trafficStat from '@/views/traffic/stat'
 
 const NotFound = {
@@ -31,7 +32,7 @@ export default {
     {
       path: '/services/:serviceId',
       name: 'service-detail',
-      component: servicesDetail,
+      component: serviceDetail,
       meta: { title: '服务详情' + title }
     },
     {
@@ -55,19 +56,19 @@ export default {
     {
       path: '/nodes/add',
       name: 'node-add',
-      component: nodesEdit,
+      component: nodeEdit,
       meta: { title: '添加节点' + title }
     },
     {
       path: '/nodes/:nodeId/detail',
       name: 'node-detail',
-      component: nodesDetail,
+      component: nodeDetail,
       meta: { title: '节点详情' + title }
     },
     {
       path: '/nodes/:nodeId/edit',
       name: 'node-edit',
-      component: nodesEdit,
+      component: nodeEdit,
       meta: { title: '编辑节点' + title }
     },
     {
@@ -77,15 +78,21 @@ export default {
       meta: { title: '用户' + title }
     },
     {
+      path: '/users/add',
+      name: 'user-add',
+      component: userAdd,
+      meta: { title: '添加用户' + title }
+    },
+    {
       path: '/users/:userId',
       name: 'user-detail',
-      component: usersDetail,
+      component: userDetail,
       meta: { title: '用户详情' + title }
     },
     {
       path: '/users/:userId/edit',
       name: 'user-edit',
-      component: usersEdit,
+      component: userEdit,
       meta: { title: '编辑用户' + title }
     },
     {

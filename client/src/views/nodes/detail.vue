@@ -1,5 +1,5 @@
 <template>
-  <div class="nodes-detail">
+  <div class="node-detail">
     <traffic-chart-stat
       :data="stat"
       :loading="isLoading.stat">
@@ -184,7 +184,7 @@ export default {
 </script>
 
 <style lang="less">
-.nodes-detail {
+.node-detail {
   position: relative;
 
   .navbar {
