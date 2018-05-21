@@ -1,5 +1,5 @@
 <template>
-  <div class="nodes-edit">
+  <div class="node-edit">
     <div class="weui-loadmore" v-show="isLoading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
@@ -224,7 +224,7 @@ export default {
 </script>
 
 <style lang="less">
-.nodes-edit {
+.node-edit {
   .weui-cell .weui-cell__ft {
     font-size: 1em;
   }

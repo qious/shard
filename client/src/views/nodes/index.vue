@@ -1,5 +1,13 @@
 <template>
   <div class="nodes weui-panel weui-panel_access">
+    <div class="weui-panel__hd weui-panel_link">
+      <router-link
+        class="weui-cell weui-cell_access weui-cell_link"
+        :to="{name: 'node-add'}">
+        <div class="weui-cell__bd">添加节点</div>
+        <span class="weui-cell__ft"></span>
+      </router-link>
+    </div>
     <div class="weui-panel__bd">
       <div class="weui-loadmore" v-if="isLoading">
         <i class="weui-loading"></i>
@@ -36,14 +44,6 @@
             </li>
           </ul>
         </div>
-      </router-link>
-    </div>
-    <div class="weui-panel__ft">
-      <router-link
-        class="weui-cell weui-cell_access weui-cell_link"
-        :to="{name: 'node-add'}">
-        <div class="weui-cell__bd">添加节点</div>
-        <span class="weui-cell__ft"></span>
       </router-link>
     </div>
   </div>
@@ -96,6 +96,10 @@ export default {
       float: right;
       color: #FB7886;
     }
+  }
+
+  .weui-panel__hd.weui-panel_link {
+    padding: 0;
   }
 }
 </style>

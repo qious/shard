@@ -1,5 +1,5 @@
 <template>
-  <div class="users-detail">
+  <div class="user-detail">
     <traffic-chart-sum :user="user"></traffic-chart-sum>
 
     <div class="navbar">
@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style lang="less">
-.users-detail {
+.user-detail {
   position: relative;
 
   .navbar {

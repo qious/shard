@@ -1,5 +1,5 @@
 <template>
-  <div class="services-detail">
+  <div class="service-detail">
     <div class="weui-cells__title">服务信息</div>
     <div class="weui-cells weui-cells_form weui-panel__bd">
       <div class="weui-cell">
@@ -179,7 +179,7 @@ export default {
 </script>
 
 <style lang="less">
-.services-detail {
+.service-detail {
   .copy {
     display: inline-block;
     height: 25px;

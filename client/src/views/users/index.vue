@@ -8,6 +8,14 @@
       <span class="weui-loadmore__tips">暂无数据</span>
     </div>
     <div class="weui-panel weui-panel_access" v-else>
+      <div class="weui-panel__hd weui-panel_link">
+        <router-link
+          class="weui-cell weui-cell_access weui-cell_link"
+          :to="{name: 'user-add'}">
+          <div class="weui-cell__bd">添加用户</div>
+          <span class="weui-cell__ft"></span>
+        </router-link>
+      </div>
       <div class="weui-panel__bd">
         <router-link :to="{name: 'user-detail', params: {userId: item.userId}}"
           class="weui-media-box weui-media-box_appmsg" v-for="item in items" :key="item.userId">
@@ -18,7 +26,7 @@
             </h4>
             <ul class="weui-media-box__info">
               <li class="weui-media-box__info__meta">
-                {{'活跃于 '+ fromNow(item.activedAt)}}
+                {{item.activedAt ? ('活跃于 '+ fromNow(item.activedAt)) : '从未使用'}}
               </li>
               <li class="weui-media-box__info__meta">
                 {{'已用，共 ' + filesize(item.trafficLimit)}}
@@ -32,6 +40,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import Api from '@/api'
 import filesize from 'filesize'
 import { fromNow } from '@/libs/utils'
@@ -53,7 +62,11 @@ export default {
       this.isLoading = true
       Api('/api/users').then(({ data }) => {
         this.isLoading = false
-        this.items = data
+        this.items = _.chain(data).map((item) => {
+          return Object.assign(item, {
+            sortDatetime: item.activedAt || item.createdAt
+          })
+        }).sortBy('sortDatetime').reverse().value()
       }).catch(() => {
         this.isLoading = false
       })
@@ -85,6 +98,10 @@ export default {
       float: right;
       padding-right: 0;
     }
+  }
+
+  .weui-panel__hd.weui-panel_link {
+    padding: 0;
   }
 }
 </style>

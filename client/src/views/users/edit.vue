@@ -1,5 +1,5 @@
 <template>
-  <div class="users-edit">
+  <div class="user-edit">
     <div class="weui-loadmore" v-show="isLoading">
       <i class="weui-loading"></i>
       <span class="weui-loadmore__tips">正在加载</span>
@@ -96,7 +96,15 @@
             </div>
           </div>
           <div class="weui-flex__item">
-            <router-link :to="{name: 'user-detail'}" class="weui-btn weui-btn_default" :class="{'weui-btn_loading': isSubmit}">返回</router-link>
+            <div
+              class="weui-btn weui-btn_warn"
+              :class="{'weui-btn_loading': isSubmit || isRemove}"
+              @click="remove()">
+              <span v-if="isRemove">
+                <i class="weui-loading"></i> 删除中
+              </span>
+              <span v-else>删除</span>
+            </div>
           </div>
         </div>
       </div>
@@ -120,7 +128,8 @@ export default {
       isAdmin: null,
       isLocked: null,
       isLoading: false,
-      isSubmit: false
+      isSubmit: false,
+      isRemove: false
     }
   },
 
@@ -190,13 +199,31 @@ export default {
       }).catch(() => {
         this.isSubmit = false
       })
+    },
+
+    remove () {
+      if (this.isSubmit || this.isRemove) {
+        return false
+      } else if (!confirm('你确定要删除当前用户吗?')) {
+        return false
+      }
+
+      this.isRemove = true
+      Api(`/api/users/${this.userId}`, {
+        method: 'DELETE'
+      }).then(() => {
+        this.isRemove = false
+        this.$router.push({name: 'users'})
+      }).catch(() => {
+        this.isRemove = false
+      })
     }
   }
 }
 </script>
 
 <style lang="less">
-.users-edit {
+.user-edit {
   .weui-cell .weui-cell__ft {
     font-size: 1em;
   }
