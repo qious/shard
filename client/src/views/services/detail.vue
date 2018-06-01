@@ -154,11 +154,11 @@ export default {
     },
 
     genUri (service) {
-      let user = `${service.method}:${service.password}`
-      user = new Buffer(user).toString('base64')
-      user = user.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+      let uri = `${service.method}:${service.password}@${service.server}:${service.port}`
+      uri = new Buffer(uri).toString('base64')
+      uri = uri.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
       let mark = encodeURIComponent(service.name)
-      return `ss://${user}@${service.server}:${service.port}#${mark}`
+      return `ss://${uri}#${mark}`
     },
 
     copySuccess () {
